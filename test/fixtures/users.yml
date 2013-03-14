@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  first_name: MyString
+  last_name: MyString
+  birthdate: 2013-03-12
+  email: MyString
+  group: 1
+  promotion: 1
+  temporary_profile: 1
+
+two:
+  first_name: MyString
+  last_name: MyString
+  birthdate: 2013-03-12
+  email: MyString
+  group: 1
+  promotion: 1
+  temporary_profile: 1

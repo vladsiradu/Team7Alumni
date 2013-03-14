@@ -60,6 +60,6 @@ module Alumni
     config.assets.version = '1.0'
 
     # Deploying on Heroku
-    config.assets.initialize_on_precompile = false
+    onfig.assets.initialize_on_precompile = false
   end
 end
