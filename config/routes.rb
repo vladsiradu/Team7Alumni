@@ -2,9 +2,7 @@ Alumni::Application.routes.draw do
   devise_for :users
 
   resources :experiences
-
   resources :educations
-
   resources :users
 
   # The priority is based upon order of creation:
