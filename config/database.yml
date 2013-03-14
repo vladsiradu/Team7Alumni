@@ -17,7 +17,7 @@ development:
   encoding: unicode
   database: Alumni_development
   pool: 5
-  username: cristina
+  username: alumni
   password: parola
 
   # Connect on a TCP socket. Omitted by default since the client uses a
