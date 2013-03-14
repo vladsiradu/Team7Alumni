@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  university: MyString
+  faculty_name: MyString
+  enrollment_date: 2013-03-12
+  graduation_date: 2013-03-12
+  domain: MyString
+  specialization: MyString
+
+two:
+  user_id: 1
+  university: MyString
+  faculty_name: MyString
+  enrollment_date: 2013-03-12
+  graduation_date: 2013-03-12
+  domain: MyString
+  specialization: MyString
