@@ -26,7 +26,7 @@ window.IN.API.Profile("me").fields(["id","email-address","first-name","last-name
 
 function displayProfiles(profiles) {
 var member = profiles.values[0];
-document.getElementById("alumni").innerHTML ="<p> Nume si prenume: " + member.firstName+ " ("+member.maidenName+")" + member.lastName + "<br> Email: " + member.emailAddress + "<br>Data nasterii: "+member.dateOfBirth.day+"-"+member.dateOfBirth.month+"-"+member.dateOfBirth.year+" </p>";
+document.getElementById("alumni").innerHTML ="<p> Nume si prenume: " + member.firstName+ " " + member.lastName + "<br> Email: " + member.emailAddress + "<br>Data nasterii: "+member.dateOfBirth.day+"-"+member.dateOfBirth.month+"-"+member.dateOfBirth.year+" </p>";
 
 
 }

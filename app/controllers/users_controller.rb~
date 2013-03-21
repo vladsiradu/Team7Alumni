@@ -87,7 +87,6 @@ class UsersController < ApplicationController
 
    # ca sa vedeti (in console) ce contine acest hash
    Rails.logger.debug omniauth.inspect
-   Rails.logger.debug "==================="
   end
 
 end
