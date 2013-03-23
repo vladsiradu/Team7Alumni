@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
-
+    @json = User.all.to_gmaps4rails
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
@@ -87,6 +87,10 @@ class UsersController < ApplicationController
 
    # ca sa vedeti (in console) ce contine acest hash
    Rails.logger.debug omniauth.inspect
+
+   educations = omniauth["extra"]["raw_info"]["educations"]
+   educations[0]
+
    Rails.logger.debug "==================="
   end
 
