@@ -1,34 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<title></title>
-<script type="text/javascript" src="http://platform.linkedin.com/in.js">
-api_key: mgdh4gtnqnra
-scope: r_fullprofile r_basicprofile r_emailaddress 
-onLoad: onLinkedInLoad
-authorize: true
-</script>
-</head>
-<body>
-<script type="IN/Login" data-onauth="onLinkedInAuth"></script>
-<div id="alumni"></div>
-</body>
-<script type="text/javascript">
+<html>
 
-/* ------ LinkedIn --------*/
-function onLinkedInLoad() {
-IN.Event.on(IN, "auth", onLinkedInAuth);
-}
+<a href="/auth/linkedin" rel="external">Apasa ca sa te conectezi cu Linkedin</a>
 
-function onLinkedInAuth() {
-window.IN.API.Profile("me").fields(["id","email-address","first-name","last-name","maiden-name","date-of-birth","","educations:(id,school-name)","skills:(skill:(name))"]).result(displayProfiles);
-}
+<div class="masthead">
+        <ul class="nav nav-pills">
 
-function displayProfiles(profiles) {
-var member = profiles.values[0];
-document.getElementById("alumni").innerHTML ="<p> Nume si prenume: " + member.firstName+ " " + member.lastName + "<br> Email: " + member.emailAddress + "<br>Data nasterii: "+member.dateOfBirth.day+"-"+member.dateOfBirth.month+"-"+member.dateOfBirth.year+" </p>";
+          
+           <% if signed_in? %>
+                <li> <%= link_to "Sign out",  destroy_user_session_path, :method => :delete %> </li>
+	    <% else %>
+           <li><%= link_to "Sign in",  new_user_session_path  %></li>
+            <% end %>
+        </ul>
+      </div>
 
-
-}
-</script>
 </html>
