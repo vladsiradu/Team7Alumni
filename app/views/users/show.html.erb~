@@ -35,20 +35,6 @@
   <%= @user.temporary_profile %>
 </p>
 
-<p>
-  <b>Latitude:</b>
-  <%= @user.latitude %>
-</p>
-
-<p>
-  <b>Longitude:</b>
-  <%= @user.longitude %>
-</p>
-
-<p>
-  <b>Address:</b>
-  <%= @user.address %>
-</p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
