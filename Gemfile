@@ -11,6 +11,7 @@ gem 'devise'
 # ForLinkedin
 gem 'omniauth'
 gem 'omniauth-linkedin'
+gem 'linkedin'
 
 gem 'bootstrap-sass'
 # Gems used only for assets and not required

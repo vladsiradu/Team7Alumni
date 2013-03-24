@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+before_filter :authenticate_user!
+
   # GET /users
   # GET /users.json
   def index
@@ -81,12 +83,81 @@ class UsersController < ApplicationController
     end
   end
 
-  def create_from_linkedin
-   omniauth = request.env["omniauth.auth"]
-   # in omniauth o sa aveti practic un hash cu toate datele de pe linkedin. Acum puteti folosi aceste date ca sa le adaugati la user-ul curent
 
-   # ca sa vedeti (in console) ce contine acest hash
-   Rails.logger.debug omniauth.inspect
+  def get_client
+    auth = request.env["omniauth.auth"]
+    pin = params[:oauth_verifier]
+    client = LinkedIn::Client.new("mgdh4gtnqnra", "adFWD50VxWY35Yi1")
+    client.authorize_from_access(auth['credentials']['token'],auth['credentials']['secret'])
+    client
+  end
+
+
+  def create_from_linkedin
+    client = get_client
+    user = User.find_by_id(current_user.id)
+
+    profile = client.profile(:fields => ["first-name", "last-name", "date-of-birth", "email-address", "location", "picture-url"])
+    profile = profile.to_hash
+    user.first_name = profile['first_name']
+    user.last_name = profile['last_name']
+    user.birthdate = Date.new(profile['date_of_birth']['year'], profile['date_of_birth']['month'], profile['date_of_birth']['day'])
+    user.email = profile['email_address']
+    user.location = profile['location']['name']
+    user.imageurl = profile['picture_url']
+    #user.city = profile['location']['country']  -- nu exista oras..
+    user.save
+    update_educations
+    update_experiences
+ end
+
+  def update_experiences
+      client = get_client
+      positions = client.profile(:fields => [:positions]).positions.all
+#sa adaug si industry?? 
+      if(!positions.nil?)
+        positions.each do |p|
+          if(!Experience.exists?(:id => p.id))
+            if p.is_current == "true"
+              Experience.create(
+	        id: p.id,
+                job_title: p.title, 
+                description: p.summary, 
+                start_date: Date.parse("1/#{p.start_date.month ? p.start_date.month : 1}/#{p.start_date.year}"), 
+                end_date: Date.parse("1/#{p.end_date.month ? p.end_date.month : 1}/#{p.end_date.year}"),  
+                company: p.company.name, 
+                user_id: current_user.id)
+            else
+              Experience.create(
+	        id: p.id,
+                job_title: p.title, 
+                description: p.summary, 
+                start_date: Date.parse("1/#{p.start_date.month ? p.start_date.month : 1}/#{p.start_date.year}"), 
+                company: p.company.name, 
+                user_id: current_user.id)
+            end
+          end
+        end
+      end
+  end
+
+  def update_educations
+      client = get_client
+      educations = client.profile(:fields => [:educations]).educations.all
+      if(!educations.nil?)
+        educations.each do |e|
+          if(!Education.exists?(:id => e.id))
+            new_educations = Education.create(
+	      id: e.id,
+              university: e.school_name, 
+              #faculty_name: e.field_of_study, ------nu exista asa cv
+              enrollment_date: Date.parse("1/#{e.start_date.month ? p.start_date.month : 1}/#{e.start_date.year}"), 
+              graduation_date: Date.parse("1/#{e.end_date.month ? p.end_date.month : 1}/#{e.end_date.year}"), 
+              domain: e.degree, 
+              user_id: current_user.id) 
+	  end 
+        end
+      end
   end
 
 end
