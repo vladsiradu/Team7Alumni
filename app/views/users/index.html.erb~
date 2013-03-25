@@ -19,6 +19,9 @@
     <td><%= user.first_name %></td>
     <td><%= user.last_name %></td>
     <td><%= user.birthdate %></td>
+    <td><%= user.latitude %></td>
+    <td><%= user.longitude %></td>
+    <td><%= user.address %></td>
     <td><%= user.email %></td>
     <td><%= user.group %></td>
     <td><%= user.promotion %></td>
