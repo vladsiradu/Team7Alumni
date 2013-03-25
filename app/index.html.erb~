@@ -54,9 +54,9 @@
 		        <% for user in @users %>
 			<tr>
 			  <% if user.imageurl.nil? %> 
-			    <td><%= image_tag("logo.png", width:"50", height:"50", alt: "logo") %></td>
+			    <td><img src="imagine_standard" class="img-polaroid" width="50" height="50"></td>
                           <% else %>
-			    <td><%= image_tag(user.imageurl, alt: "logo") %></td>
+			    <td><img src=utilizator.imageurl class="img polaroid" width=50" height="50"></td>
 			  <% end %>
 			  <td><%= user.first_name %></td>
      			  <td><%= user.last_name %></td>
@@ -74,6 +74,7 @@
     		
 	</div>
 	<div class="bottom-logo">
-    	<%= image_tag("logo.png", alt: "logo") %>
+    	<img src="..\assets\images\logo.png" width="150px" height="150px" />
+	<%= link_to image_tag("logo.png", alt: "logo") %>
 	</div>
 </html>
