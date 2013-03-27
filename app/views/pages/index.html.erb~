@@ -1,4 +1,7 @@
 <html>
+<head>
+<script type="text/javascript" src="location.js" > </script>
+</head>
 <p><a href="/auth/linkedin" rel="external">Apasa ca sa te conectezi cu Linkedin</a></p>
          
            <% if signed_in? %>
@@ -56,7 +59,7 @@
 			  <% if user.imageurl.nil? %> 
 			    <td><%= image_tag("logo.png", width:"50", height:"50", alt: "logo") %></td>
                           <% else %>
-			    <td><%= image_tag(user.imageurl, alt: "logo") %></td>
+			    <td><%= link_to image_tag(user.imageurl, width:"50", height:"50", alt: "logo"), '/user/'+current_user.id.to_s %></td>
 			  <% end %>
 			  <td><%= user.first_name %></td>
      			  <td><%= user.last_name %></td>
