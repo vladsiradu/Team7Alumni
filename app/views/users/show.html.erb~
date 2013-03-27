@@ -55,7 +55,7 @@
 					<tr>
 	
 						<th>Specializare:</th>
-						<td><%= @user.specialization %></td>
+						<td<%= @user.specialization %></td>
 					</tr>
 
 					
