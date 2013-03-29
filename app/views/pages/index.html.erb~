@@ -1,34 +1,82 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-<title></title>
-<script type="text/javascript" src="http://platform.linkedin.com/in.js">
-api_key: mgdh4gtnqnra
-scope: r_fullprofile r_basicprofile r_emailaddress 
-onLoad: onLinkedInLoad
-authorize: true
-</script>
+<script type="text/javascript" src="location.js" > </script>
 </head>
-<body>
-<script type="IN/Login" data-onauth="onLinkedInAuth"></script>
-<div id="alumni"></div>
-</body>
-<script type="text/javascript">
+<p><a href="/auth/linkedin" rel="external">Apasa ca sa te conectezi cu Linkedin</a></p>
+         
+           <% if signed_in? %>
+                 <%= link_to "Sign out",  destroy_user_session_path, :method => :delete %> 
+	    <% else %>
+           <%= link_to "Sign in",  new_user_session_path  %>
+            <% end %>
 
-/* ------ LinkedIn --------*/
-function onLinkedInLoad() {
-IN.Event.on(IN, "auth", onLinkedInAuth);
-}
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">      
+        	<a class="brand" href="index.html">Alumni</a>
+        	<div class="nav-collapse collapse nav-bar-inverse-collapse">
+        		<ul class="nav pull-right">
+        		<li><a href="">Actualizare Informatii</a>
+        		<li><a href="#">Iesire</a></li>
+        		</ul>
+        	</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container-narrow">
+    	
+	<div class="masthead">
+        <div id="navbar-example" class="navbar navbar-static">
+            <div class="navbar-inner">
+            <a class="brand" href="">Alumni</a>
+              <div class="container" style="width: auto;">
+                <ul class="nav" role="navigation">
+                  <li class="active"><a href="#">Harta colegi</a></li>
+                  <li ><a href="listaPromotii.html">Lista Promotii</a></li>
+              </div>
+            </div>
+          </div>
+    </div>
+      
+    <div class="well">
 
-function onLinkedInAuth() {
-window.IN.API.Profile("me").fields(["id","email-address","first-name","last-name","maiden-name","date-of-birth","","educations:(id,school-name)","skills:(skill:(name))"]).result(displayProfiles);
-}
+    	<h4 class="muted">Vezi pe harta unde se afla colegii tai.</h4>
+		<div id="map_canvas" class="map_canvas" >
+		</div>
+		<h4>Lista colegi</h4>
+		<table class="table table-striped alumni">
+		  	<tr>
+			 <th>Poza</th>
+			 <th>Prenume</th>
+			 <th>Nume</th>
+			 <th>Locatie</th>
+			 <th>Email</th>
+			</tr>
+			
+		        <% for user in @users %>
+			<tr>
+			  <% if user.imageurl.nil? %> 
+			    <td><%= image_tag("logo.png", width:"50", height:"50", alt: "logo") %></td>
+                          <% else %>
+			    <td><%= link_to image_tag(user.imageurl, width:"50", height:"50", alt: "logo"), '/user/'+current_user.id.to_s %></td>
+			  <% end %>
+			  <td><%= user.first_name %></td>
+     			  <td><%= user.last_name %></td>
+			  <td><%= user.location %></td>
+			  <td><%= user.email %></td>		    	  
+			</tr>
+			<% end %>
+		      
+		</table>
+	</div>
 
-function displayProfiles(profiles) {
-var member = profiles.values[0];
-document.getElementById("alumni").innerHTML ="<p> Nume si prenume: " + member.firstName+ " " + member.lastName + "<br> Email: " + member.emailAddress + "<br>Data nasterii: "+member.dateOfBirth.day+"-"+member.dateOfBirth.month+"-"+member.dateOfBirth.year+" </p>";
 
-
-}
-</script>
+	<div class="clearfix"></div>
+    
+    		
+	</div>
+	<div class="bottom-logo">
+    	<%= image_tag("logo.png", alt: "logo") %>
+	</div>
 </html>

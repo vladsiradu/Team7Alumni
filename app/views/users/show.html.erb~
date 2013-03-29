@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -34,6 +35,86 @@
   <b>Temporary profile:</b>
   <%= @user.temporary_profile %>
 </p>
+=======
+<html>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">      
+        	<a class="brand" href="index.html">Profilul meu</a>
+        	<div class="nav-collapse collapse nav-bar-inverse-collapse">
+        		<ul class="nav pull-right">
+        		<li><a href="">Actualizare Informatii</a>
+        		<li><a href="#">Iesire</a></li>
+        		</ul>
+        	</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container-narrow">
+         
+    <div class="well span12">
+	
+			<div class="span3">
+				<img src=<%=@user.imageurl%> width="150" height="150" >
+			</div>
+			<div class="span5">
+				<h4><%= @user.first_name %> <%= @user.last_name %></h4>
+				<table class="table table-striped">
+					<tr>
+						<th>Nume:</th>
+						<td><%= @user.first_name %></td>
+					</tr>
+					<tr>
+						<th>Prenume:</th>
+						<td><%= @user.last_name %></td>
+					</tr>
+					<tr>
+						<th>Data nasterii:</th>
+						<td><%= @user.birthdate %></td>
+					</tr>
+					<tr>
+						<th>Email:</th>
+						<td><%= @user.email %></td>
+					</tr>
+					<tr>
+						<th>Locatie curenta:</th>
+						<td><%= @user.location %></td>
+					</tr>
+					<tr>
+						<th>Grupa</th>
+						<td><%= @user.group %></td>
+					</tr>
+					<tr>
+						<th>Promotia:</th>
+						<td><%= @user.promotion %></td>
+					</tr>
+					<tr>
+	
+						<th>Specializare:</th>
+						<td<%= @user.specialization %></td>
+					</tr>
+
+					
+				</table>
+			</div>
+			<!--<a class="pull-right text-error" href="#">Editeaza profilul</a>	-->		
+	</div>
+	
+	
+
+
+	<div class="clearfix"></div>
+    
+</html>
+
+
+
+
+<p id="notice"><%= notice %></p>
+
+>>>>>>> 7eb4ddb094df960c9887a5048c53e44b21c7f4b1
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

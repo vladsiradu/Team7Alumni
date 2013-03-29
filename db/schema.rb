@@ -16,11 +16,9 @@ ActiveRecord::Schema.define(:version => 20130323171224) do
   create_table "educations", :force => true do |t|
     t.integer  "user_id"
     t.string   "university"
-    t.string   "faculty_name"
     t.date     "enrollment_date"
     t.date     "graduation_date"
     t.string   "domain"
-    t.string   "specialization"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
@@ -61,6 +59,9 @@ ActiveRecord::Schema.define(:version => 20130323171224) do
     t.float    "longitude"
     t.boolean  "gmaps"
     t.string   "address"
+    t.string   "location"
+    t.text     "imageurl"
+    t.string   "specialization"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

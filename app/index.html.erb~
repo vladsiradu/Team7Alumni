@@ -1,0 +1,80 @@
+<html>
+<p><a href="/auth/linkedin" rel="external">Apasa ca sa te conectezi cu Linkedin</a></p>
+         
+           <% if signed_in? %>
+                 <%= link_to "Sign out",  destroy_user_session_path, :method => :delete %> 
+	    <% else %>
+           <%= link_to "Sign in",  new_user_session_path  %>
+            <% end %>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">      
+        	<a class="brand" href="index.html">Alumni</a>
+        	<div class="nav-collapse collapse nav-bar-inverse-collapse">
+        		<ul class="nav pull-right">
+        		<li><a href="">Actualizare Informatii</a>
+        		<li><a href="#">Iesire</a></li>
+        		</ul>
+        	</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container-narrow">
+    	
+	<div class="masthead">
+        <div id="navbar-example" class="navbar navbar-static">
+            <div class="navbar-inner">
+            <a class="brand" href="">Alumni</a>
+              <div class="container" style="width: auto;">
+                <ul class="nav" role="navigation">
+                  <li class="active"><a href="#">Harta colegi</a></li>
+                  <li ><a href="listaPromotii.html">Lista Promotii</a></li>
+              </div>
+            </div>
+          </div>
+    </div>
+      
+    <div class="well">
+
+    	<h4 class="muted">Vezi pe harta unde se afla colegii tai.</h4>
+		<div id="map_canvas" class="map_canvas" >
+		</div>
+		<h4>Lista colegi</h4>
+		<table class="table table-striped alumni">
+		  	<tr>
+			 <th>Poza</th>
+			 <th>Prenume</th>
+			 <th>Nume</th>
+			 <th>Locatie</th>
+			 <th>Email</th>
+			</tr>
+			
+		        <% for user in @users %>
+			<tr>
+			  <% if user.imageurl.nil? %> 
+			    <td><img src="imagine_standard" class="img-polaroid" width="50" height="50"></td>
+                          <% else %>
+			    <td><img src=utilizator.imageurl class="img polaroid" width=50" height="50"></td>
+			  <% end %>
+			  <td><%= user.first_name %></td>
+     			  <td><%= user.last_name %></td>
+			  <td><%= user.location %></td>
+			  <td><%= user.email %></td>		    	  
+			</tr>
+			<% end %>
+		      
+		</table>
+	</div>
+
+
+	<div class="clearfix"></div>
+    
+    		
+	</div>
+	<div class="bottom-logo">
+    	<img src="..\assets\images\logo.png" width="150px" height="150px" />
+	<%= link_to image_tag("logo.png", alt: "logo") %>
+	</div>
+</html>

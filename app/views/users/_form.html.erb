@@ -21,25 +21,6 @@
   </div>
 
   <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :latitude %><br />
-    <%= f.text_field :latitude %>
-  </div>
-
-  <div class="field">
-    <%= f.label :longitude %><br />
-    <%= f.text_field :longitude %>
-  </div>
-
-  <div class="field">
-    <%= f.label :birthdate %><br />
-    <%= f.date_select :birthdate %>
-  </div>
-  <div class="field">
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
@@ -62,8 +43,17 @@
     <%= f.number_field :promotion %>
   </div>
   <div class="field">
-    <%= f.label :temporary_profile %><br />
-    <%= f.number_field :temporary_profile %>
+    <%=f.label :location %><br />
+    <%= f.text_field :location %>
+  </div>
+
+  <div class="field">
+    <%=f.label :specialization %><br />
+    <%= f.text_field :specialization %>
+  </div>
+
+
+
   </div>
   <div class="actions">
     <%= f.submit %>

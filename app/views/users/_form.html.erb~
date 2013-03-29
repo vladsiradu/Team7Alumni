@@ -19,6 +19,7 @@
     <%= f.label :last_name %><br />
     <%= f.text_field :last_name %>
   </div>
+<<<<<<< HEAD
 
   <div class="field">
     <%= f.label :address %><br />
@@ -31,6 +32,8 @@
   </div>
 
 
+=======
+>>>>>>> 7eb4ddb094df960c9887a5048c53e44b21c7f4b1
   <div class="field">
     <%= f.label :birthdate %><br />
     <%= f.date_select :birthdate %>
@@ -58,8 +61,25 @@
     <%= f.number_field :promotion %>
   </div>
   <div class="field">
+<<<<<<< HEAD
     <%= f.label :temporary_profile %><br />
     <%= f.number_field :temporary_profile %>
+=======
+    <%=f.label :location %><br />
+    <%= f.text_field :location %>
+  </div>
+
+  <div class="field">
+    <%=f.label :specialization %><br />
+    <%= f.text_field :specialization %>
+  </div>
+
+  <div class="hidden_field">
+    <%= f.label :temporary_profile %><br />
+    <%= f.number_field :temporary_profile %>
+
+
+>>>>>>> 7eb4ddb094df960c9887a5048c53e44b21c7f4b1
   </div>
   <div class="actions">
     <%= f.submit %>
