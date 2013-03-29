@@ -13,7 +13,7 @@ has_many :education, :foreign_key => "user_id"
 has_many :experience, :foreign_key => "user_id"
 
 # can also be an IP address
-geocoded_by :address
+geocoded_by :location
 # auto-fetch coordinates
 after_validation :geocode
 
@@ -29,8 +29,8 @@ after_validation :reverse_geocode
 
 acts_as_gmappable :process_geocoding => false
 
-def gmaps4rails_address
+def gmaps4rails_location
 #describe how to retrieve the address from your model, if you use directly a db column, you can dry your code, see wiki
-  address
+  location
 end
 end
