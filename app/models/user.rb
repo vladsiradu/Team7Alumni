@@ -7,25 +7,38 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,:imageurl
-  attr_accessible :birthdate, :location, :email, :first_name, :group, :last_name, :promotion, :temporary_profile, :encrypted_password, :specialization, :latitude, :longitude
+  attr_accessible :birthdate, :location, :email, :first_name, :address, :group, :last_name, 
+                  :promotion, :temporary_profile, :encrypted_password, :specialization, :latitude, :longitude
 
-has_many :education, :foreign_key => "user_id" 
-has_many :experience, :foreign_key => "user_id"
+  has_many :education, :foreign_key => "user_id" 
+  has_many :experience, :foreign_key => "user_id"
 
-# can also be an IP address
-geocoded_by :location
-# auto-fetch coordinates
-after_validation :geocode
+  # can also be an IP address
+  geocoded_by :location
+  # auto-fetch coordinates
+  after_validation :geocode
 
-reverse_geocoded_by :latitude, :longitude
+  reverse_geocoded_by :latitude, :longitude
 
-# auto-fetch address
-after_validation :reverse_geocode  
+  # auto-fetch address
+  after_validation :reverse_geocode  
 
-acts_as_gmappable :process_geocoding => false
+  acts_as_gmappable :process_geocoding => false
 
-def gmaps4rails_location
-#describe how to retrieve the address from your model, if you use directly a db column, you can dry your code, see wiki
-  location
-end
+  def gmaps4rails_location
+    #describe how to retrieve the address from your model, if you use directly a db column, you can dry your code, see wiki
+    location
+  end
+
+  def address=(val)
+  end
+
+  def linkedin_connected?
+    if self.linkedin_connected == Constant::YES
+      return true
+    else
+      return false
+    end
+  end
+
 end

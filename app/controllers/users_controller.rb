@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-before_filter :authenticate_user!
+  before_filter :authenticate_user!
 
   # GET /users
   # GET /users.json
@@ -97,19 +97,28 @@ before_filter :authenticate_user!
   def create_from_linkedin
     client = get_client
     user = User.find_by_id(current_user.id)
-    profile = client.profile(:fields => ["first-name", "last-name", "date-of-birth", "email-address", "location", "picture-url"])
-    profile = profile.to_hash
-    user.first_name = profile['first_name']
-    user.last_name = profile['last_name']
-    user.birthdate = Date.new(profile['date_of_birth']['year'], profile['date_of_birth']['month'], profile['date_of_birth']['day'])
-    user.email = profile['email_address']
-    user.location = profile['location']['name']
-    user.imageurl = profile['picture_url']
-    #user.city = profile['location']['country']  -- nu exista oras..
-    user.save
-    update_educations
-    update_experiences
-    redirect_to root_path 
+    if not user.linkedin_connected?
+      profile = client.profile(:fields => ["first-name", "last-name", "date-of-birth", "email-address", "location", "picture-url"])
+      profile = profile.to_hash
+      user.update_attributes(:first_name => profile['first_name'], :last_name => profile['last_name'], :email => profile['email_address'],
+                             :location => profile['location']['name'], :location => profile['picture_url'])
+      user.birthdate = Date.new(profile['date_of_birth']['year'], profile['date_of_birth']['month'], profile['date_of_birth']['day'])
+      user.linkedin_connected = Constant::YES
+      if user.save
+        redirect_to root_path, :notice => "Contul dumneavoastra a fost creat"
+      else
+        redirect_to root_path, :notice => "A fost o eroare in crearea contului"
+      end
+
+      # Updated the user information
+      update_educations
+      update_experiences
+    else
+      raise "lalala"
+      sign_in user
+    end
+
+    redirect_to root_path
  end
 
   def update_experiences

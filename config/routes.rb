@@ -1,11 +1,12 @@
 Alumni::Application.routes.draw do
   get "pages/index"
 
+  # TODO: Sign out doesn't work
   devise_for :users
+  resources :users
 
   resources :experiences
   resources :educations
-  resources :users
 
   match '/auth/linkedin/callback', to: 'users#create_from_linkedin'
   # The priority is based upon order of creation:
