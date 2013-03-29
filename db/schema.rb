@@ -55,11 +55,11 @@ ActiveRecord::Schema.define(:version => 20130329142708) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.text     "imageurl"
     t.float    "latitude"
     t.float    "longitude"
     t.boolean  "gmaps"
     t.string   "location"
+    t.text     "imageurl"
     t.string   "specialization"
     t.integer  "linkedin_connected"
   end
