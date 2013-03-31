@@ -1,12 +1,11 @@
-<p><a href="/auth/linkedin" rel="external">Apasa ca sa te conectezi cu Linkedin</a></p>
-
     <% if signed_in? %>
       <%= link_to "Sign out",  destroy_user_session_path, :method => :delete %> 
     <% else %>
-      <%= link_to "Sign in",  new_user_session_path  %>
-    <% end %>
+      <%= link_to "Sign in",  new_user_session_path  %> sau<br/>
+  <%= link_to "Sign in with linkedin!", "/auth/linkedin" %>
 
-    
+   <% end %>
+<p><%= link_to "Update", "/update" %></p>
     <div class="container-narrow">
     	
 	<div class="masthead">

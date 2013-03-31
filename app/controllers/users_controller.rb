@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!
+ # before_filter :authenticate_user!
 
   # GET /users
   # GET /users.json
@@ -84,45 +84,61 @@ class UsersController < ApplicationController
     end
   end
 
+ def update_DB
+    client = LinkedIn::Client.new("mgdh4gtnqnra", "adFWD50VxWY35Yi1")
+    @users=User.all
+    @users.each do |user|
+    client.authorize_from_access(user.token,user.secret)
+    update_educations(client,user)
+    update_experiences(client,user)
+    redirect_to root_path
+    end
+ end
 
   def get_client
     auth = request.env["omniauth.auth"]
     pin = params[:oauth_verifier]
+    @user = User.find_by_email(auth['info']['email'])
+    if(@user)
+    sign_in @user
     client = LinkedIn::Client.new("mgdh4gtnqnra", "adFWD50VxWY35Yi1")
     client.authorize_from_access(auth['credentials']['token'],auth['credentials']['secret'])
     client
+    end
   end
 
 
   def create_from_linkedin
-    client = get_client
-    user = User.find_by_id(current_user.id)
-    if not user.linkedin_connected?
-      profile = client.profile(:fields => ["first-name", "last-name", "date-of-birth", "email-address", "location", "picture-url"])
-      profile = profile.to_hash
-      user.update_attributes(:first_name => profile['first_name'], :last_name => profile['last_name'], :email => profile['email_address'],
-                             :location => profile['location']['name'], :location => profile['picture_url'])
-      user.birthdate = Date.new(profile['date_of_birth']['year'], profile['date_of_birth']['month'], profile['date_of_birth']['day'])
-      user.linkedin_connected = Constant::YES
-      if user.save
-        redirect_to root_path, :notice => "Contul dumneavoastra a fost creat"
-      else
-        redirect_to root_path, :notice => "A fost o eroare in crearea contului"
-      end
+    #client = get_client
+    auth = request.env["omniauth.auth"]
+    #pin = params[:oauth_verifier]
+    user = User.find_by_email(auth['info']['email'])
+    if(user)
+#user = User.find_by_id(current_user.id)
 
-      # Updated the user information
-      update_educations
-      update_experiences
-    else
-      raise "lalala"
-      sign_in user
-    end
+    sign_in user
+    client = LinkedIn::Client.new("mgdh4gtnqnra", "adFWD50VxWY35Yi1")
+    client.authorize_from_access(auth['credentials']['token'],auth['credentials']['secret'])
 
+ user.token = auth['credentials']['token'] 
+ user.secret = auth['credentials']['secret'] 
+    profile = client.profile(:fields => ["first-name", "last-name", "date-of-birth", "email-address", "location", "picture-url"])
+    profile = profile.to_hash
+    user.update_attributes(:first_name => profile['first_name'], :last_name => profile['last_name'], :email => profile['email_address'],
+                             :location => profile['location']['name'], :imageurl => profile['picture_url'])
+    user.birthdate = Date.new(profile['date_of_birth']['year'], profile['date_of_birth']['month'], profile['date_of_birth']['day'])
+    user.save
+      
+    # Updated the user information
+    update_educations(client,user)
+    update_experiences(client,user)
+    
+end
     redirect_to root_path
  end
 
-  def update_experiences
-      client = get_client
+  def update_experiences(client,user)
+      #client = get_client
       positions = client.profile(:fields => [:positions]).positions.all
 #sa adaug si industry?? 
       if(!positions.nil?)
@@ -136,7 +152,7 @@ class UsersController < ApplicationController
                 start_date: Date.parse("1/#{p.start_date.month ? p.start_date.month : 1}/#{p.start_date.year}"), 
                 end_date: Date.parse("1/#{p.end_date.month ? p.end_date.month : 1}/#{p.end_date.year}"),  
                 company: p.company.name, 
-                user_id: current_user.id)
+                user_id: user.id)
             else
               Experience.create(
 	        id: p.id,
@@ -151,8 +167,8 @@ class UsersController < ApplicationController
       end
   end
 
-  def update_educations
-      client = get_client
+  def update_educations(client,user)
+      #client = get_client
       educations = client.profile(:fields => [:educations]).educations.all
       if(!educations.nil?)
         educations.each do |e|
@@ -164,7 +180,7 @@ class UsersController < ApplicationController
               enrollment_date: Date.parse("1/#{e.start_date.month ? p.start_date.month : 1}/#{e.start_date.year}"), 
               graduation_date: Date.parse("1/#{e.end_date.month ? p.end_date.month : 1}/#{e.end_date.year}"), 
               domain: e.degree, 
-              user_id: current_user.id) 
+              user_id: user.id) 
 	  end 
         end
       end

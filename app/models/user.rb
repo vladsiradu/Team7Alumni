@@ -33,12 +33,12 @@ class User < ActiveRecord::Base
   def address=(val)
   end
 
-  def linkedin_connected?
-    if self.linkedin_connected == Constant::YES
-      return true
-    else
-      return false
+
+  def self.create_with_omniauth(auth)
+    create! do |user|
+      user.uid = auth["uid"]
     end
   end
+
 
 end

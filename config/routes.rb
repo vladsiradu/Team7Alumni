@@ -7,8 +7,9 @@ Alumni::Application.routes.draw do
 
   resources :experiences
   resources :educations
-
+  
   match '/auth/linkedin/callback', to: 'users#create_from_linkedin'
+  match '/update', to: 'users#update_DB'   
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
