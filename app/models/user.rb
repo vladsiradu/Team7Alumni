@@ -10,8 +10,8 @@ class User < ActiveRecord::Base
   attr_accessible :birthdate, :location, :email, :first_name, :address, :group, :last_name, 
                   :promotion, :temporary_profile, :encrypted_password, :specialization, :latitude, :longitude
 
-  has_many :education, :foreign_key => "user_id" 
-  has_many :experience, :foreign_key => "user_id"
+  has_many :educations, :foreign_key => "user_id" 
+  has_many :experiences, :foreign_key => "user_id"
 
   # can also be an IP address
   geocoded_by :location

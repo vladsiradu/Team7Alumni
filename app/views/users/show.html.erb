@@ -61,6 +61,26 @@
 			</div>
 			<a class="pull-right text-error" href="#">Editeaza profilul</a>			
 	</div>
+
+Afisare educatii:
+<% @educations=@user.educations %>
+<% @educations.each do |education| %>
+Universitatea: <%= education.university%><br/>
+Data inceput: <%= education.enrollment_date%><br/>
+Data sfarsit: <%= education.graduation_date%><br/>
+domeniu: <%= education.domain%><br/>
+<% end %>
+
+Afisare slujbe:
+<% @experiences=@user.experiences %>
+<% @experiences.each do |experience| %>
+Denumire job: <%= experience.job_title%><br/>
+Companie: <%= experience.company%><br/>
+Data inceput: <%= experience.start_date%><br/>
+Data sfarsit: <%= experience.end_date%><br/>
+<% end %>
+
+
 </html>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
