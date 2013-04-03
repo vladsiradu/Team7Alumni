@@ -13,7 +13,7 @@ Alumni::Application.routes.draw do
   resources :educations
   
   match '/auth/linkedin/callback', to: 'users#create_from_linkedin'
-  match '/update', to: 'users#update_DB'   
+  match '/fullupdate', to: 'users#update_DB'
   match '/home', to: 'pages#index'
   match 'edit_user', to: 'users#edit'
   #match '/login', to: 'pages#login'

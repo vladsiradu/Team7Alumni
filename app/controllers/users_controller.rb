@@ -84,44 +84,32 @@ class UsersController < ApplicationController
     end
   end
 
+#updates all clients from database 
  def update_DB
     client = LinkedIn::Client.new("mgdh4gtnqnra", "adFWD50VxWY35Yi1")
     @users=User.all
     @users.each do |user|
-    client.authorize_from_access(user.token,user.secret)
-    update_educations(client,user)
-    update_experiences(client,user)
-    redirect_to home_path
+      if user.token
+        client.authorize_from_access(user.token,user.secret)
+        update_educations(client,user)
+        update_experiences(client,user)
+        redirect_to home_path
+      end
     end
  end
 
-  def get_client
-    auth = request.env["omniauth.auth"]
-    pin = params[:oauth_verifier]
-    @user = User.find_by_email(auth['info']['email'])
-    if(@user)
-    sign_in @user
-    client = LinkedIn::Client.new("mgdh4gtnqnra", "adFWD50VxWY35Yi1")
-    client.authorize_from_access(auth['credentials']['token'],auth['credentials']['secret'])
-    client
-    end
-  end
-
-
+# updates the current client
   def create_from_linkedin
-    #client = get_client
     auth = request.env["omniauth.auth"]
-    #pin = params[:oauth_verifier]
     user = User.find_by_email(auth['info']['email'])
     if(user)
-#user = User.find_by_id(current_user.id)
 
     sign_in user
     client = LinkedIn::Client.new("mgdh4gtnqnra", "adFWD50VxWY35Yi1")
     client.authorize_from_access(auth['credentials']['token'],auth['credentials']['secret'])
 
- user.token = auth['credentials']['token'] 
- user.secret = auth['credentials']['secret'] 
+    user.token = auth['credentials']['token'] 
+    user.secret = auth['credentials']['secret'] 
     profile = client.profile(:fields => ["first-name", "last-name", "date-of-birth", "email-address", "location", "picture-url"])
     profile = profile.to_hash
     user.update_attributes(:first_name => profile['first_name'], :last_name => profile['last_name'], :email => profile['email_address'],
