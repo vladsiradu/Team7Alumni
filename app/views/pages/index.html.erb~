@@ -1,5 +1,5 @@
 
-    <center><a class="zocial linkedin" href="/clientupdate">Update informatii folosind LinkedIn</a></center><br><br>
+    <center><a class="zocial linkedin" href="/auth/linkedin">Update informatii folosind LinkedIn</a></center><br><br>
     <div class="container-narrow">
     	
 	<div class="masthead">
@@ -8,8 +8,8 @@
             <a class="brand" href="">Alumni</a>
               <div class="container" style="width: auto;">
                 <ul class="nav" role="navigation">
-                  <li class="active"><a href="#">Harta colegi</a></li>
-                  <li ><a href="listaPromotii.html">Lista Promotii</a></li>
+                  <li class="active"><a href="/home">Harta colegi</a></li>
+                  
               </div>
             </div>
           </div>
@@ -38,7 +38,11 @@
 			  <% end %>
 			  <td><%= user.first_name %></td>
      			  <td><%= user.last_name %></td>
-			  <td><%= user.location %></td>
+                          <% if Location.find_by_id(user.location_id) %>
+			    <td><%= Location.find_by_id(user.location_id).name %></td>
+                          <%else%>                          
+                            <td> </td>
+                          <%end %>
 			  <td><%= user.email %></td>		    	  
 			</tr>
 			<% end %>
