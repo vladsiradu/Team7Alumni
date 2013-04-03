@@ -1,74 +1,20 @@
-<<<<<<< HEAD
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>First name:</b>
-  <%= @user.first_name %>
-</p>
-
-<p>
-  <b>Last name:</b>
-  <%= @user.last_name %>
-</p>
-
-<p>
-  <b>Birthdate:</b>
-  <%= @user.birthdate %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
-
-<p>
-  <b>Group:</b>
-  <%= @user.group %>
-</p>
-
-<p>
-  <b>Promotion:</b>
-  <%= @user.promotion %>
-</p>
-
-<p>
-  <b>Temporary profile:</b>
-  <%= @user.temporary_profile %>
-</p>
-=======
-<html>
-
-<div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">      
-        	<a class="brand" href="index.html">Profilul meu</a>
-        	<div class="nav-collapse collapse nav-bar-inverse-collapse">
-        		<ul class="nav pull-right">
-        		<li><a href="">Actualizare Informatii</a>
-        		<li><a href="#">Iesire</a></li>
-        		</ul>
-        	</div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="container-narrow">
-         
+<html>   
+  <div class="container-narrow">
     <div class="well span12">
-	
-			<div class="span3">
-				<img src=<%=@user.imageurl%> width="150" height="150" >
-			</div>
-			<div class="span5">
-				<h4><%= @user.first_name %> <%= @user.last_name %></h4>
-				<table class="table table-striped">
-					<tr>
-						<th>Nume:</th>
-						<td><%= @user.first_name %></td>
-					</tr>
-					<tr>
-						<th>Prenume:</th>
-						<td><%= @user.last_name %></td>
+      <div class="span3">
+	<img src=<%=@user.imageurl%> width="150" height="150" >
+      </div>
+      <div class="span5">
+	<h4><%= @user.first_name %> <%= @user.last_name %></h4>
+	<table class="table table-striped">
+	  <tr>
+	    <th>Nume:</th>
+            <td><%= @user.first_name %></td>
+          </tr>
+
+          <tr>
+            <th>Prenume:</th>
+            <td><%= @user.last_name %></td>
 					</tr>
 					<tr>
 						<th>Data nasterii:</th>
@@ -93,29 +39,46 @@
 					<tr>
 	
 						<th>Specializare:</th>
-						<td<%= @user.specialization %></td>
+						<td><%= @user.specialization %></td>
 					</tr>
+					<tr>
+					        <th> Educatie:</th>
+               	 			        <td> <% @educations=@user.educations %>
+						     <% @educations.each do |education| %>
+						<b> Universitatea: </b> <%= education.university%><br/>
+						<b> Data inceput: </b><%= education.enrollment_date%><br/>
+						<b>Data sfarsit:</b> <%= education.graduation_date%><br/> 
+					       <b> Domeniu:</b> <%= education.domain%><br/> 
+					       <% end %>		
+						</td>			        
+					</tr>
+					     <th> Joburi: </th>
+					     <td>
+
+					<% @experiences=@user.experiences %>
+<% @experiences.each do |experience| %>
+<b>Denumire job:</b> <%= experience.job_title%><br/>
+<b>Companie:</b> <%= experience.company%><br/>
+<b>Data inceput:</b> <%= experience.start_date%><br/>
+<b>Data sfarsit:</b> <%= experience.end_date%><br/>
+<% end %>
+					     </td>
+					<tr>
+
 
 					
 				</table>
 			</div>
-			<!--<a class="pull-right text-error" href="#">Editeaza profilul</a>	-->		
+			<% if(current_user == @user) %> 
+			  <a class="pull-right text-error" <%= link_to 'Editeaza profilul', edit_user_path(@user) %> </a>		
+                        <% end %>	
 	</div>
-	
-	
 
 
-	<div class="clearfix"></div>
-    
+
+
+
+
+
 </html>
 
-
-
-
-<p id="notice"><%= notice %></p>
-
->>>>>>> 7eb4ddb094df960c9887a5048c53e44b21c7f4b1
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>

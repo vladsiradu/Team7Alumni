@@ -1,11 +1,5 @@
-    <% if signed_in? %>
-      <%= link_to "Sign out",  destroy_user_session_path, :method => :delete %> 
-    <% else %>
-      <%= link_to "Sign in",  new_user_session_path  %> sau<br/>
-  <%= link_to "Sign in with linkedin!", "/auth/linkedin" %>
 
-   <% end %>
-<p><%= link_to "Update", "/update" %></p>
+    <center><a class="zocial linkedin" href="/update">Update informatii folosind LinkedIn</a></center><br><br>
     <div class="container-narrow">
     	
 	<div class="masthead">
@@ -53,9 +47,7 @@
 	</div>
 
 
-	<div class="clearfix"></div>
-    
-    		
+	<div class="clearfix"></div>	
 	</div>
 	<div class="bottom-logo">
     	<%= image_tag("logo.png", alt: "logo") %>

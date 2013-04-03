@@ -135,7 +135,8 @@ a.zocial {
 /* Button background and text color */
 
 .zocial.lego {background-color: #fb0000;}
-.zocial.linkedin {background-color: #0083a8;}
+.zocial.linkedin {background-color: #0083a8;
+		  color: white}
 
 
 /*

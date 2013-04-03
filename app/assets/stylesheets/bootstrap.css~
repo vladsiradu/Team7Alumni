@@ -234,7 +234,7 @@ body {
   line-height: 20px;
   color: #333333;
   background-color: #ffffff;
-  background-image: url("../img/bg2.jpg");
+  background-image: url("/assets/body_bgs6.jpg");
   background-size:200%;
 }
 

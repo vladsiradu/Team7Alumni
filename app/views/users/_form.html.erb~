@@ -1,3 +1,21 @@
+<div class="container-narrow">
+         
+    <div class="well span12">
+	
+			<div class="span3">
+<img src=<%=@user.imageurl%> width="150" height="150" >
+				
+				<div class="fileupload fileupload-new editProfileChangePicture" data-provides="fileupload">
+<span class="btn btn-file"><span class="fileupload-new">Schimba poza</span><span class="fileupload-exists">Change</span><input type="file" /></span>
+<span class="fileupload-preview"></span>
+<a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+</div>
+				
+			</div>
+			<div class="span8 pull-right">
+
+				<table class="table table-striped editProfile">
+
 <%= form_for(@user) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
@@ -11,77 +29,51 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-  </div>
-<<<<<<< HEAD
+   <tr>
+      <th><%= f.label :Nume %></th>
+      <td><%= f.text_field :first_name %></td>
+   </tr>
 
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :latitude %><br />
-    <%= f.text_field :latitude %>
-  </div>
+  <tr>
+    <th><%= f.label :Prenume %></th>
+    <td><%= f.text_field :last_name %></td>
+  </tr>
 
+  <tr>
+    <th><%= f.label :Email %></th>
+    <td><%= f.text_field :email %></td>
+  </tr>
 
-=======
->>>>>>> 7eb4ddb094df960c9887a5048c53e44b21c7f4b1
-  <div class="field">
-    <%= f.label :birthdate %><br />
-    <%= f.date_select :birthdate %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
+  <tr>
+    <th><%= f.label :Parola %></th>
+    <td><%= f.password_field :password %></td>
+  </tr>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
-  </div>
+  <tr>
+    <th><%= f.label :Confirma_parola %></th>
+    <td><%= f.password_field :password_confirmation %></td>
+  </tr>
 
-  <div class="field">
-    <%= f.label :group %><br />
-    <%= f.number_field :group %>
-  </div>
-  <div class="field">
-    <%= f.label :promotion %><br />
-    <%= f.number_field :promotion %>
-  </div>
-  <div class="field">
-<<<<<<< HEAD
-    <%= f.label :temporary_profile %><br />
-    <%= f.number_field :temporary_profile %>
-=======
-    <%=f.label :location %><br />
-    <%= f.text_field :location %>
-  </div>
+  <tr>
+    <th><%= f.label :Grupa %></th>
+    <td><%= f.text_field :group %></td>
+  </tr>
 
-  <div class="field">
-    <%=f.label :specialization %><br />
-    <%= f.text_field :specialization %>
-  </div>
+  <tr>
+    <th><%= f.label :Promotia %></th>
+    <td><%= f.text_field :promotion %></td>
+  </tr>
 
-  <div class="hidden_field">
-    <%= f.label :temporary_profile %><br />
-    <%= f.number_field :temporary_profile %>
-
-
->>>>>>> 7eb4ddb094df960c9887a5048c53e44b21c7f4b1
-  </div>
+  <tr>
+    <th><%= f.label :Specializarea %></th>
+    <td><%= f.text_field :specialization %></td>
+  </tr>
+</table>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+  </div>
+
+
