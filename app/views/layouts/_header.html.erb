@@ -1,14 +1,29 @@
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">      
-        	<a class="brand" href="index.html">Alumni</a>
-        	<div class="nav-collapse collapse nav-bar-inverse-collapse">
-        		<ul class="nav pull-right">
-        		<li><a href="">Actualizare Informatii</a>
+<% if signed_in? %>    
+<div class="navbar navbar-inverse navbar">
+  <div class="navbar-inner">
+    <div class="container">
+       <a class="brand" href='/home'> Alumni</a>
+       <div class="nav-collapse collapse nav-bar-inverse-collapse">
+         <ul class="nav pull-right">
+            <li><a href="/home">Acasa</a>
+	    <li> <%= link_to "Profil", current_user %> </li>      
             <li><%= link_to "Iesire", destroy_user_session_path, :method => :delete %></li>
-        		</ul>
-        	</div>
+           </ul>
         </div>
-      </div>
     </div>
+  </div>
+</div>
+<% else %>
+<div class="navbar navbar-inverse navbar">
+  <div class="navbar-inner">
+    <div class="container">
+       <a class="brand" href='/login'> Alumni</a>
+     </div>
+  </div>
+</div>
+<% end %>
+
+
+
+
 

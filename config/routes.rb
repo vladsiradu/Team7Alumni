@@ -1,15 +1,23 @@
 Alumni::Application.routes.draw do
-  get "pages/index"
+  get "pages/home"
 
   # TODO: Sign out doesn't work
   devise_for :users
   resources :users
+
+  devise_scope :user do
+    get "/login" => "devise/sessions#new"
+  end
 
   resources :experiences
   resources :educations
   
   match '/auth/linkedin/callback', to: 'users#create_from_linkedin'
   match '/update', to: 'users#update_DB'   
+  match '/home', to: 'pages#index'
+  #match '/login', to: 'pages#login'
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -67,5 +75,5 @@ Alumni::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 
-  root :to => "pages#index"
+  root :to => "pages#login"
 end

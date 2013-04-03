@@ -91,7 +91,7 @@ class UsersController < ApplicationController
     client.authorize_from_access(user.token,user.secret)
     update_educations(client,user)
     update_experiences(client,user)
-    redirect_to root_path
+    redirect_to home_path
     end
  end
 
@@ -134,7 +134,7 @@ class UsersController < ApplicationController
     update_experiences(client,user)
     
 end
-    redirect_to root_path
+    redirect_to home_path
  end
 
   def update_experiences(client,user)

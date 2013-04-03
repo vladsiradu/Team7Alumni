@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20130331125841) do
     t.string   "location"
     t.text     "imageurl"
     t.string   "specialization"
+    t.integer  "linkedin_connected"
     t.string   "token"
     t.string   "secret"
   end
