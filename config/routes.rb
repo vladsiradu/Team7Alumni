@@ -1,4 +1,6 @@
 Alumni::Application.routes.draw do
+  resources :locations
+
   get "pages/home"
 
   # TODO: Sign out doesn't work

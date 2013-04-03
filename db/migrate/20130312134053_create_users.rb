@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :group
       t.integer :promotion
       t.integer :temporary_profile
+      t.integer :location_id
 
       t.timestamps
     end

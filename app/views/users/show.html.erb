@@ -25,7 +25,11 @@
 					</tr>
 					<tr>
 						<th>Locatie curenta:</th>
-						<td><%= @user.location %></td>
+					        <% if Location.find_by_id(@user.location_id) %>
+                           			  <td><%= Location.find_by_id(@user.location_id).name %></td>
+                          			<%else%>
+                            			  <td> </td>
+                          			<%end %>
 					</tr>
 					<tr>
 						<th>Grupa</th>
@@ -40,44 +44,35 @@
 						<th>Specializare:</th>
 						<td><%= @user.specialization %></td>
 					</tr>
-					<tr>
-					        <th> Educatie:</th>
-               	 			        <td> <% @educations=@user.educations %>
-						     <% @educations.each do |education| %>
-						<b> Universitatea: </b> <%= education.university%><br/>
-						<b> Data inceput: </b><%= education.enrollment_date%><br/>
-						<b>Data sfarsit:</b> <%= education.graduation_date%><br/> 
-					       <b> Domeniu:</b> <%= education.domain%><br/> 
-					       <% end %>		
-						</td>			        
-					</tr>
-					     <th> Joburi: </th>
-					     <td>
-
-					<% @experiences=@user.experiences %>
+ <tr>
+                                                <th> Educatie:</th>
+                                               <td> <% @educations=@user.educations %>
+                                                     <% @educations.each do |education| %>
+                                                <b> Universitatea: </b> <%= education.university%><br/>
+                                                <b> Data inceput: </b><%= education.enrollment_date%><br/>
+                                                <b>Data sfarsit:</b> <%= education.graduation_date%><br/>
+                                               <b> Domeniu:</b> <%= education.domain%><br/>
+                                               <% end %>                                               
+                                                </td>                           
+                                        </tr>
+                                             <th> Joburi: </th>
+                                          <tr> 
+<td>
+                                        <% @experiences=@user.experiences %>
 <% @experiences.each do |experience| %>
 <b>Denumire job:</b> <%= experience.job_title%><br/>
 <b>Companie:</b> <%= experience.company%><br/>
 <b>Data inceput:</b> <%= experience.start_date%><br/>
 <b>Data sfarsit:</b> <%= experience.end_date%><br/>
 <% end %>
-					     </td>
-					<tr>
-
-
-					
+                                          </td>
+                                        </tr>
 				</table>
 			</div>
 			<% if(current_user == @user) %> 
 			  <a class="pull-right text-error" <%= link_to 'Editeaza profilul', edit_user_path(@user) %> </a>		
                         <% end %>	
 	</div>
-
-
-
-
-
-
 
 </html>
 

@@ -113,8 +113,22 @@ class UsersController < ApplicationController
     profile = client.profile(:fields => ["first-name", "last-name", "date-of-birth", "email-address", "location", "picture-url"])
     profile = profile.to_hash
     user.update_attributes(:first_name => profile['first_name'], :last_name => profile['last_name'], :email => profile['email_address'],
-                             :location => profile['location']['name'], :imageurl => profile['picture_url'])
+                             :imageurl => profile['picture_url'])
     user.birthdate = Date.new(profile['date_of_birth']['year'], profile['date_of_birth']['month'], profile['date_of_birth']['day'])
+
+      @locations=Location.all
+    loc=nil
+    @locations.each do |location|
+      if location.name == profile['location']['name']
+        loc=location
+      end
+     end
+    
+    if !loc
+    loc=Location.create(:name=>profile['location']['name'])
+  end
+      user.location_id=loc.id
+          
     user.save
       
     # Updated the user information

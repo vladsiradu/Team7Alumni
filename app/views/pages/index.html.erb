@@ -38,7 +38,11 @@
 			  <% end %>
 			  <td><%= user.first_name %></td>
      			  <td><%= user.last_name %></td>
-			  <td><%= user.location %></td>
+                          <% if Location.find_by_id(user.location_id) %>
+			    <td><%= Location.find_by_id(user.location_id).name %></td>
+                          <%else%>                          
+                            <td> </td>
+                          <%end %>
 			  <td><%= user.email %></td>		    	  
 			</tr>
 			<% end %>
