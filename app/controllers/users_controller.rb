@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
-    @json = User.all.to_gmaps4rails
+    #@json = User.all.to_gmaps4rails
     
     respond_to do |format|
       format.html # index.html.erb
