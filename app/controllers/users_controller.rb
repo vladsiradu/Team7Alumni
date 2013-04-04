@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
-    @json = User.all.to_gmaps4rails
     
     respond_to do |format|
       format.html # index.html.erb
@@ -134,10 +133,11 @@ class UsersController < ApplicationController
     # Updated the user information
     update_educations(client,user)
     update_experiences(client,user)
-    
-end
     redirect_to home_path
- end
+return
+end
+redirect_to root_path, :alert=> "Login with LinkedIn failed!!"
+     end
 
   def update_experiences(client,user)
       #client = get_client
