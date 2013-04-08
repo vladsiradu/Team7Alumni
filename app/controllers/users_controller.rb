@@ -145,7 +145,7 @@ redirect_to root_path, :alert=> "Login with LinkedIn failed!!"
 #sa adaug si industry?? 
       if(!positions.nil?)
         positions.each do |p|
-          if(!Experience.exists?(:id => p.id))
+          if(!Experience.exists?(:id => p.id) && start_date && end_date)
             if p.is_current == "true"
               Experience.create(
 	        id: p.id,
