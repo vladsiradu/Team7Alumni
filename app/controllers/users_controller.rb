@@ -113,16 +113,19 @@ class UsersController < ApplicationController
     profile = profile.to_hash
     user.update_attributes(:first_name => profile['first_name'], :last_name => profile['last_name'], :email => profile['email_address'],
                              :imageurl => profile['picture_url'])
+   if(profile['date_of_birth'])
     user.birthdate = Date.new(profile['date_of_birth']['year'], profile['date_of_birth']['month'], profile['date_of_birth']['day'])
+   end
 
       @locations=Location.all
     loc=nil
+    if(profile['location'])
     @locations.each do |location|
       if location.name == profile['location']['name']
         loc=location
       end
      end
-    
+    end
     if !loc
     loc=Location.create(:name=>profile['location']['name'])
   end
@@ -145,7 +148,7 @@ redirect_to root_path, :alert=> "Login with LinkedIn failed!!"
 #sa adaug si industry?? 
       if(!positions.nil?)
         positions.each do |p|
-          if(!Experience.exists?(:id => p.id) && start_date && end_date)
+          if(!Experience.exists?(:id => p.id) && p.start_date && p.end_date)
             if p.is_current == "true"
               Experience.create(
 	        id: p.id,
