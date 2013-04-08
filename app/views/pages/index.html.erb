@@ -16,8 +16,42 @@
       
     <div class="well">
 
+
     	<h4 class="muted">Vezi pe harta unde se afla colegii tai.</h4>
-      <%= gmaps4rails(@json) %>
+        <%= gmaps4rails(@json) %><br>
+        <form class="form-search cerereAdmitere">
+	    <div class="navbar navbar-static">
+	    	<div class="navbar-inner">
+	    	
+	    	<span class="filterTagAlumni">Seria</span>
+	    	<select class="selectAlumni span1">
+						<option>I</option>
+						<option>II</option>
+			</select>
+	    	
+			<span class="filterTagAlumni">Promotia</span>
+	    	<select class="selectAlumni span2">
+						<option>2009</option>
+						<option>2010</option>
+						<option>2011</option>
+						<option>2012</option>
+			</select>
+	    	
+			<span class="filterTagAlumni">Job</span>
+	    	        <select class="selectAlumni span3">
+						<option>Programator</option>
+						<option>Inginer</option>
+						<option>Profesor</option>
+						<option>Sofer</option>
+			</select>
+	    	
+	        <button type="submit" class="btn">Actualizare</button>
+	        
+	    	
+            </div>
+         </div>
+	     </form><br>
+
 		<h4>Lista colegi</h4>
 		<table class="table table-striped alumni">
 		  <tr>

@@ -7,7 +7,11 @@
       <div class="span5">
 	<h4><%= @user.first_name %> <%= @user.last_name %></h4>
 	<table class="table table-striped">
-	  <tr>
+    <tr>
+      <li> <%= link_to 'Profilul meu de LinkedIn', @user.ProfileUrl %></li>
+	<li> <%= @user.ProfileUrl %> </li>
+    </tr>
+    <tr>
 	    <th>Nume:</th>
             <td><%= @user.first_name %></td>
           </tr>
@@ -15,6 +19,10 @@
             <th>Prenume:</th>
             <td><%= @user.last_name %></td>
 	  </tr>
+<tr>
+						<th>Profil LinkedIn:</th>
+						<td><%= @user.ProfileUrl %></td>
+					</tr>
 					<tr>
 						<th>Data nasterii:</th>
 						<td><%= @user.birthdate %></td>
@@ -51,7 +59,7 @@
                                                 <b> Universitatea: </b> <%= education.university%><br/>
                                                 <b> Perioada: </b><%= education.enrollment_date%>
                                                 - <%= education.graduation_date%><br/>
-                                               <b> Domeniu:</b> <%= education.domain%><br/><br><br>
+                                               <b> Domeniul:</b> <%= education.domain%><br/><br><br>
                                                <% end %>                                               
                                                 </td>                           
                                         </tr>
