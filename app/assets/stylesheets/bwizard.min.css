@@ -21,9 +21,6 @@ padding-left:12px}.bwizard-steps li:first-child:before{border:0}
 @media(max-width:480px){.bwizard-steps li,.bwizard-steps li.active,.bwizard-steps li:first-child,.bwizard-steps li:last-child{background-color:transparent;padding:0;margin-right:0}
 .bwizard-steps li:after,.bwizard-steps li:before{border:0}}
 
-.two-steps li{
-	width:344px;
-}
 .three-steps li{
 	width:205px;
 }

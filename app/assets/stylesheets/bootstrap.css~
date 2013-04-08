@@ -234,8 +234,8 @@ body {
   line-height: 20px;
   color: #333333;
   background-color: #ffffff;
-  background-image: url("/assets/body_bgs6.jpg");
-  background-size:200%;
+  background-image: url(body_bg6.jpg);
+  background-size:90%;
 }
 
 a {
@@ -306,6 +306,7 @@ a:focus {
 
 .container-narrow .well{
 	padding:10px;
+	
 }
 
 .span12 {
@@ -6248,4 +6249,80 @@ a.badge:focus {
 	margin:0;
 	height:14px;
 	width:80px;
+}
+
+.editProfile input[type="text"]{
+	width:180px;
+}
+
+.editProfile select{
+	margin-bottom:0;
+}
+
+.burse-wizzard{
+	margin-top:15px;
+}
+
+.selectAlumni{
+	margin-top:0;
+}
+.filterTagAlumni{
+	color: #777777;
+    padding: 9px 10px 0;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+.menuAlumni{
+	margin:5px;
+}
+.menuAlumni .btn{
+	margin:0;
+}
+#titluTabelListaTeme{
+  color: black;
+}
+.informatii{
+  width: 515px;
+}
+.inputAdmitere{
+  width: 200px;
+}
+.containerStatistici{
+  width: 550px;
+}
+.butonStatistici{
+  margin-left: 115px !important;
+}
+.admitere{
+  width: 535px;
+}
+.admitere .well{
+min-height: 200px;
+}
+.cerereAdmitere{
+  margin: 0 0 6px;
+}
+.vizualizare{
+  margin: 12px 300px auto;
+}
+.containerBarChart{
+   width: 438px;
+   height: 350px;
+   margin-left: 35px;
+}
+.celulaStatistici{
+  float: right;
+  width: 100px;
+}
+.baraStatistici{
+  width: 250px;
+}
+.tabelStatistici{
+  margin-bottom: 40px;
+}
+.tabelStatistici td{
+  border-top: 0px;
+}
+.containerServiciiConexe{
+  width: 650px;
 }
