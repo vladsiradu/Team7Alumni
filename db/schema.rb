@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130404170444) do
+ActiveRecord::Schema.define(:version => 20130408211010) do
 
   create_table "educations", :force => true do |t|
     t.integer  "user_id"
@@ -78,15 +78,12 @@ ActiveRecord::Schema.define(:version => 20130404170444) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.boolean  "gmaps"
-    t.string   "location"
     t.text     "imageurl"
     t.string   "specialization"
     t.integer  "linkedin_connected"
     t.string   "token"
     t.string   "secret"
+    t.string   "ProfileUrl"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

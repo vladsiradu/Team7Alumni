@@ -109,11 +109,12 @@ class UsersController < ApplicationController
 
     user.token = auth['credentials']['token'] 
     user.secret = auth['credentials']['secret'] 
-    profile = client.profile(:fields => ["first-name", "last-name", "date-of-birth", "email-address", "location", "picture-url"])
+    profile = client.profile(:fields => ["first-name", "last-name", "date-of-birth", "email-address", "location", "public-profile-url", "picture-urls::(original)"])
     profile = profile.to_hash
     user.update_attributes(:first_name => profile['first_name'], :last_name => profile['last_name'], :email => profile['email_address'],
-                             :imageurl => profile['picture_url'])
-   if(profile['date_of_birth'])
+                             :imageurl => profile['picture_urls']['all'].first)
+    user.ProfileUrl = profile['public_profile_url']
+    if(profile['date_of_birth'])
     user.birthdate = Date.new(profile['date_of_birth']['year'], profile['date_of_birth']['month'], profile['date_of_birth']['day'])
    end
 
