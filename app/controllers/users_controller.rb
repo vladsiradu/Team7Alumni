@@ -90,6 +90,7 @@ class UsersController < ApplicationController
     @users.each do |user|
       if user.token
         client.authorize_from_access(user.token,user.secret)
+        update_profile(client,user)
         update_educations(client,user)
         update_experiences(client,user)
       end
@@ -106,9 +107,21 @@ class UsersController < ApplicationController
     sign_in user
     client = LinkedIn::Client.new("mgdh4gtnqnra", "adFWD50VxWY35Yi1")
     client.authorize_from_access(auth['credentials']['token'],auth['credentials']['secret'])
-
     user.token = auth['credentials']['token'] 
     user.secret = auth['credentials']['secret'] 
+
+    # Updated the user information
+    update_profile(client,user)
+    update_educations(client,user)
+    update_experiences(client,user)
+    redirect_to home_path
+return
+end
+redirect_to root_path, :alert=> "Login with LinkedIn failed!!"
+     end
+
+  def update_profile(client,user)
+
     profile = client.profile(:fields => ["first-name", "last-name", "date-of-birth", "email-address", "location", "public-profile-url", "picture-urls::(original)"])
     profile = profile.to_hash
     user.update_attributes(:first_name => profile['first_name'], :last_name => profile['last_name'], :email => profile['email_address'],
@@ -131,17 +144,10 @@ class UsersController < ApplicationController
     loc=Location.create(:name=>profile['location']['name'])
   end
       user.location_id=loc.id
-          
+
     user.save
-      
-    # Updated the user information
-    update_educations(client,user)
-    update_experiences(client,user)
-    redirect_to home_path
-return
-end
-redirect_to root_path, :alert=> "Login with LinkedIn failed!!"
-     end
+
+  end
 
   def update_experiences(client,user)
       #client = get_client
