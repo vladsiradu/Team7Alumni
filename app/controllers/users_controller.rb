@@ -175,17 +175,23 @@ redirect_to root_path, :alert=> "Login with LinkedIn failed!!"
       if(!educations.nil?)
         educations.each do |e|
           if(!Education.exists?(:id => e.id))
-            new_educations = Education.create(
-	      id: e.id,
-              university: e.school_name, 
-              #faculty_name: e.field_of_study, ------nu exista asa cv
-              enrollment_date: Date.parse("1/#{e.start_date.month ? p.start_date.month : 1}/#{e.start_date.year}"), 
-              graduation_date: Date.parse("1/#{e.end_date.month ? p.end_date.month : 1}/#{e.end_date.year}"), 
-              domain: e.degree, 
-              user_id: user.id) 
-	  end 
+            if(e.start_date && e.end_date)
+              new_educations = Education.create(
+	              id: e.id,
+                university: e.school_name, 
+                enrollment_date: Date.parse("1/#{e.start_date.month ? p.start_date.month : 1}/#{e.start_date.year}"), 
+                graduation_date: Date.parse("1/#{e.end_date.month ? p.end_date.month : 1}/#{e.end_date.year}"), 
+                domain: e.degree, 
+                user_id: user.id) 
+             else
+               new_educations = Education.create(
+                 id: e.id,
+                 university: e.school_name,
+                 domain: e.degree,
+                 user_id: user.id)
+             end 
+          end
         end
       end
   end
-
 end
