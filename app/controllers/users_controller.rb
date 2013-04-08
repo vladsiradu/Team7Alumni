@@ -92,7 +92,7 @@ class UsersController < ApplicationController
         client.authorize_from_access(user.token,user.secret)
         update_educations(client,user)
         update_experiences(client,user)
-        redirect_to home_path
+      #  redirect_to home_path
       end
     end
  end
