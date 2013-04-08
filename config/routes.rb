@@ -1,4 +1,6 @@
 Alumni::Application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
   resources :locations
 
   get "pages/home"
