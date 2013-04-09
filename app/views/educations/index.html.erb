@@ -4,11 +4,9 @@
   <tr>
     <th>User</th>
     <th>University</th>
-    <th>Faculty name</th>
     <th>Enrollment date</th>
     <th>Graduation date</th>
     <th>Domain</th>
-    <th>Specialization</th>
     <th></th>
     <th></th>
     <th></th>
@@ -21,7 +19,6 @@
     <td><%= education.enrollment_date %></td>
     <td><%= education.graduation_date %></td>
     <td><%= education.domain %></td>
-    <td><%= education.specialization %></td>
     <td><%= link_to 'Show', education %></td>
     <td><%= link_to 'Edit', edit_education_path(education) %></td>
     <td><%= link_to 'Destroy', education, method: :delete, data: { confirm: 'Are you sure?' } %></td>
