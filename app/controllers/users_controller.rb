@@ -174,7 +174,7 @@ redirect_to root_path, :alert=> "Login with LinkedIn failed!!"
                 description: p.summary, 
                 start_date: Date.parse("1/#{p.start_date.month ? p.start_date.month : 1}/#{p.start_date.year}"), 
                 company: p.company.name, 
-                user_id: current_user.id)
+                user_id: user.id)
             end
           end
         end
