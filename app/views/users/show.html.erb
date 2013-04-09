@@ -51,29 +51,28 @@
 						<th>Specializare:</th>
 						<td><%= @user.specialization %></td>
 					</tr>
- <tr>
-                                                <th> Educatie:</th>
-                                               <td> <% @educations=@user.educations %>
-                                                     <% @educations.each do |education| %>
-                                                <b> Universitatea: </b> <%= education.university%><br/>
-                                                <b> Perioada: </b><%= education.enrollment_date%>
-                                                - <%= education.graduation_date%><br/>
-                                               <b> Domeniul:</b> <%= education.domain%><br/><br><br>
-                                               <% end %>                                               
-                                                </td>                           
-                                        </tr>
-                                             <th> Joburi: </th>
-                                          <tr> 
-<td>
-                                        <% @experiences=@user.experiences %>
-<% @experiences.each do |experience| %>
-<b>Denumire job:</b> <%= experience.job_title%><br/>
-<b>Companie:</b> <%= experience.company%><br/>
-<b>Data inceput:</b> <%= experience.start_date%><br/>
-<b>Data sfarsit:</b> <%= experience.end_date%><br/>
-<% end %>
-                                          </td>
-                                        </tr>
+           <tr>
+             <th> Educatie:</th>
+             <td> <% @educations=@user.educations %>
+             <% @educations.each do |education| %>
+             <b> Universitatea: </b> <%= education.university%><br/>
+             <b> Perioada: </b><%= education.enrollment_date%>
+             - <%= education.graduation_date%><br/>
+             <b> Domeniul:</b> <%= education.domain%><br/><br><br>
+             <% end %>
+             </td>
+           </tr>
+           <tr> 
+             <th> Joburi: </th>
+             <td> <% @experiences=@user.experiences %>
+             <% @experiences.each do |experience| %>
+             <b>Denumire job:</b> <%= experience.job_title%><br/>
+             <b>Companie:</b> <%= experience.company%><br/>
+             <b>Data inceput:</b> <%= experience.start_date%><br/>
+             <b>Data sfarsit:</b> <%= experience.end_date%><br/>
+             <% end %>
+             </td>
+           </tr>
 				</table>
 			</div>
 			<% if(current_user == @user) %> 
