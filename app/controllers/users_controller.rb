@@ -90,6 +90,8 @@ class UsersController < ApplicationController
     @users.each do |user|
       if user.token
         client.authorize_from_access(user.token,user.secret)
+        Rails.logger.debug user.inspect
+        Rails.logger.debug "============================================================================"
         update_profile(client,user)
         update_educations(client,user)
         update_experiences(client,user)
