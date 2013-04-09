@@ -129,6 +129,8 @@ redirect_to root_path, :alert=> "Login with LinkedIn failed!!"
     user.update_attributes(:first_name => profile['first_name'], :last_name => profile['last_name'], :email => profile['email_address'])
     if profile['picture_urls']['all']
       user.imageurl = profile['picture_urls']['all'].first
+    else
+      user.imageurl = nil
     end
     user.ProfileUrl = profile['public_profile_url']
     if(profile['date_of_birth'])
