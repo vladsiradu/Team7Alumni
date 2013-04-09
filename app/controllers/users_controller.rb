@@ -85,10 +85,10 @@ class UsersController < ApplicationController
 
 #updates all clients from database 
  def update_DB
-    client = LinkedIn::Client.new("mgdh4gtnqnra", "adFWD50VxWY35Yi1")
-    @users=User.all
+        @users=User.all
     @users.each do |user|
       if user.token
+        client = LinkedIn::Client.new("mgdh4gtnqnra", "adFWD50VxWY35Yi1")
         client.authorize_from_access(user.token,user.secret)
         Rails.logger.debug user.inspect
         Rails.logger.debug "============================================================================"
