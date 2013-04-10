@@ -156,12 +156,14 @@ redirect_to root_path, :alert=> "Login with LinkedIn failed!!"
   end
 
   def update_experiences(client,user)
-      #client = get_client
-      positions = client.profile(:fields => [:positions]).positions.all
+    Rails.logger.debug "========================================================================================================================================"
+   Rails.logger.debug user.inspect  
+    positions = client.profile(:fields => [:positions]).positions.all
 #sa adaug si industry?? 
+    Rails.logger.debug user.inspect 
       if(!positions.nil?)
         positions.each do |p|
-          if(!Experience.exists?(:id => p.id) && p.start_date && p.end_date)
+          if(!Experience.exists?(:id => p.id))
             if p.is_current == "true"
               Experience.create(
 	        id: p.id,
