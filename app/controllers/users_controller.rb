@@ -156,17 +156,16 @@ redirect_to root_path, :alert=> "Login with LinkedIn failed!!"
   end
 
   def update_experiences(client,user)
-    Rails.logger.debug "========================================================================================================================================"
-   Rails.logger.debug user.inspect  
     positions = client.profile(:fields => [:positions]).positions.all
 #sa adaug si industry?? 
     Rails.logger.debug user.inspect 
       if(!positions.nil?)
         positions.each do |p|
           if(!Experience.exists?(:id => p.id))
-            if p.is_current == "true"
+            if (p.start_date)
+              if p.is_current == "true"
               Experience.create(
-	        id: p.id,
+	              id: p.id,
                 job_title: p.title, 
                 description: p.summary, 
                 start_date: Date.parse("1/#{p.start_date.month ? p.start_date.month : 1}/#{p.start_date.year}"), 
@@ -175,12 +174,21 @@ redirect_to root_path, :alert=> "Login with LinkedIn failed!!"
                 user_id: user.id)
             else
               Experience.create(
-	        id: p.id,
+	              id: p.id,
                 job_title: p.title, 
                 description: p.summary, 
                 start_date: Date.parse("1/#{p.start_date.month ? p.start_date.month : 1}/#{p.start_date.year}"), 
                 company: p.company.name, 
                 user_id: user.id)
+            end
+            else 
+                Experience.create(
+	              id: p.id,
+                job_title: p.title, 
+                description: p.summary, 
+                company: p.company.name, 
+                user_id: user.id)
+ 
             end
           end
         end
