@@ -50,7 +50,7 @@
 	    	
             </div>
          </div>
-	     </form>
+	     </form><br>
 
 		<h4>Lista colegi</h4>
 		<table class="table table-striped alumni">
@@ -65,7 +65,7 @@
 		        <% for user in @users %>
 			<tr>
 			  <% if user.imageurl.nil? %> 
-			    <td><%= link_to image_tag("logo.png", width:"50", height:"50", alt: "logo"), '/users/'+user.id.to_s  %></td>
+			    <td><%= link_to image_tag("no_profile.jpeg", width:"50", height:"50", alt: "logo"), '/users/'+user.id.to_s  %></td>
                           <% else %>
                             <td><%= link_to image_tag(user.imageurl, width:"50", height:"50", alt: "logo"), '/users/'+user.id.to_s %></td>
 			  <% end %>

@@ -1,15 +1,20 @@
 <html>   
   <div class="container-narrow">
     <div class="well span12">
+	<% if @user.imageurl.nil? %>
+        <div class="span3">
+	   <%= image_tag("no_profile.jpeg", width:"150", height="150") %>
+        </div>
+	<% else %>	
       <div class="span3">
-	<img src=<%=@user.imageurl%> width="150" height="150" >
+	<img src=<%=@user.imageurl%> width="150" height="150" />
       </div>
+        <% end %>
       <div class="span5">
 	<h4><%= @user.first_name %> <%= @user.last_name %></h4>
 	<table class="table table-striped">
     <tr>
-      <li> <%= link_to 'Profilul meu de LinkedIn', @user.ProfileUrl %></li>
-	<li> <%= @user.ProfileUrl %> </li>
+
     </tr>
     <tr>
 	    <th>Nume:</th>
@@ -21,7 +26,7 @@
 	  </tr>
 <tr>
 						<th>Profil LinkedIn:</th>
-						<td><%= @user.ProfileUrl %></td>
+						<td><%= link_to @user.ProfileUrl, @user.ProfileUrl %></td>
 					</tr>
 					<tr>
 						<th>Data nasterii:</th>
@@ -52,29 +57,28 @@
 						<th>Specializare:</th>
 						<td><%= @user.specialization %></td>
 					</tr>
- <tr>
-                                                <th> Educatie:</th>
-                                               <td> <% @educations=@user.educations %>
-                                                     <% @educations.each do |education| %>
-                                                <b> Universitatea: </b> <%= education.university%><br/>
-                                                <b> Perioada: </b><%= education.enrollment_date%>
-                                                - <%= education.graduation_date%><br/>
-                                               <b> Domeniul:</b> <%= education.domain%><br/><br><br>
-                                               <% end %>                                               
-                                                </td>                           
-                                        </tr>
-                                             <th> Joburi: </th>
-                                          <tr> 
-<td>
-                                        <% @experiences=@user.experiences %>
-<% @experiences.each do |experience| %>
-<b>Denumire job:</b> <%= experience.job_title%><br/>
-<b>Companie:</b> <%= experience.company%><br/>
-<b>Data inceput:</b> <%= experience.start_date%><br/>
-<b>Data sfarsit:</b> <%= experience.end_date%><br/>
-<% end %>
-                                          </td>
-                                        </tr>
+           <tr>
+             <th> Educatie:</th>
+             <td> <% @educations=@user.educations %>
+             <% @educations.each do |education| %>
+             <b> Universitatea: </b> <%= education.university%><br/>
+             <b> Perioada: </b><%= education.enrollment_date%>
+             - <%= education.graduation_date%><br/>
+             <b> Domeniul:</b> <%= education.domain%><br/><br><br>
+             <% end %>
+             </td>
+           </tr>
+           <tr> 
+             <th> Joburi: </th>
+             <td> <% @experiences=@user.experiences %>
+             <% @experiences.each do |experience| %>
+             <b>Denumire job:</b> <%= experience.job_title%><br/>
+             <b>Companie:</b> <%= experience.company%><br/>
+             <b>Data inceput:</b> <%= experience.start_date%><br/>
+             <b>Data sfarsit:</b> <%= experience.end_date%><br/><br><br>
+             <% end %>
+             </td>
+           </tr>
 				</table>
 			</div>
 			<% if(current_user == @user) %> 

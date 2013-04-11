@@ -18,6 +18,7 @@
 
 
     	<h4 class="muted">Vezi pe harta unde se afla colegii tai.</h4>
+        <%= stylesheet_link_tag 'gmaps4rails' %>
         <%= gmaps4rails(@json) %><br>
         <form class="form-search cerereAdmitere">
 	    <div class="navbar navbar-static">
@@ -65,7 +66,7 @@
 		        <% for user in @users %>
 			<tr>
 			  <% if user.imageurl.nil? %> 
-			    <td><%= link_to image_tag("logo.png", width:"50", height:"50", alt: "logo"), '/users/'+user.id.to_s  %></td>
+			    <td><%= link_to image_tag("no_profile.jpeg", width:"50", height:"50", alt: "logo"), '/users/'+user.id.to_s  %></td>
                           <% else %>
                             <td><%= link_to image_tag(user.imageurl, width:"50", height:"50", alt: "logo"), '/users/'+user.id.to_s %></td>
 			  <% end %>

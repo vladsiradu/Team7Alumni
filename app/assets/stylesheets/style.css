@@ -1,3 +1,2 @@
-.map_container {
-  width: 450px;
-}
+.map_container
+ img{max-width: none;}

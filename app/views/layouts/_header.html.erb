@@ -5,10 +5,11 @@
        <a class="brand" href='/home'> Alumni</a>
        <div class="nav-collapse collapse nav-bar-inverse-collapse">
          <ul class="nav pull-right">
-            <li><a href="/home">Acasa</a>
-	    <li> <%= link_to "Profil", current_user %> </li>      
-            <li><%= link_to "Iesire", destroy_user_session_path, :method => :delete %></li>
-           </ul>
+           <li class="nav pull down"> <font color = "white">Buna, <%= current_user.first_name %>  </font></li>
+            <li> <a href="/home">Acasa</a></li>
+	          <li> <%= link_to "Profil", current_user %> </li>      
+            <li> <%= link_to "Iesire", destroy_user_session_path, :method => :delete %></li>
+          </ul>
         </div>
     </div>
   </div>
