@@ -41,7 +41,7 @@
 
   <tr>
     <th><%= f.label :Email %></th>
-    <td><%= f.text_field :email %></td>
+    <td><%= f.email_field :email %></td>
   </tr>
 
   <tr>

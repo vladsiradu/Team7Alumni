@@ -36,32 +36,32 @@
   <%= devise_error_messages! %>
   <h4> Autentificare </h4>
 
-  <div><%= f.label :Email %><br />
+  <div><%= f.label :Email %>
     <%= f.email_field :email %>
   </div>
 
-  <div><%= f.label :Parola %><br />
+  <div><%= f.label :Parola %>
     <%= f.password_field :password %>
   </div>
 
-  <div><%= f.label :Confirma_parola %><br />
+  <div><%= f.label :Confirma_parola %>
     <%= f.password_field :password_confirmation %>
   </div>
 
   <div class="field">
-    <%= f.label :Grupa %><br />
-    <%= f.number_field :group %>
+    <%= f.label :Grupa %>
+    <%= f.text_field :group %>
   </div>
 
   <div class="field">
-    <%= f.label :Promotia %><br />
-    <%= f.number_field :promotion %>
+    <%= f.label :Promotia %>
+    <%= f.text_field :promotion %>
   </div>
 
   <div class="field">
-    <%=f.label :Specializarea %><br />
-    <%= f.text_field :specialization %>
-  </div>
+    <%=f.label :Specializarea %>
+    <%= f.select :specialization, options_for_select(["Matematica", "Informatica", "Tehnologia Informatiei"]) %>
+    </div>
 
   <div><%= f.submit "Creare cont" %></div>
 <% end %>
