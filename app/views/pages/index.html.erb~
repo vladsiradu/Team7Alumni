@@ -26,8 +26,9 @@
 	    	
 	    	<span class="filterTagAlumni">Grupa</span>
 	    	<select class="selectAlumni span1">
-					
-						
+						<%  User.select("DISTINCT group").each do |g| %>
+					        <option> <%= g.group %> </option>
+                                                <% end %>					
 			</select>
 	    	
 			<span class="filterTagAlumni">Promotia</span>
