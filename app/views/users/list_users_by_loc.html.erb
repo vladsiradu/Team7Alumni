@@ -1,0 +1,29 @@
+   <h4>Lista colegi</h4>
+    <table class="table table-striped alumni">
+      <tr>
+       <th>Poza</th>
+       <th>Prenume</th>
+       <th>Nume</th>
+       <th>Locatie</th>
+       <th>Email</th>
+      </tr>
+      
+            <% for user in @users %>
+      <tr>
+        <% if user.imageurl.nil? %>. 
+          <td><%= link_to image_tag("no_profile.jpeg", width:"50", height:"50", alt: "logo"), '/users/'+user.id.to_s  %></td>
+                          <% else %>
+                            <td><%= link_to image_tag(user.imageurl, width:"50", height:"50", alt: "logo"), '/users/'+user.id.to_s %></td>
+        <% end %>
+        <td><%= user.first_name %></td>
+            <td><%= user.last_name %></td>
+                          <% if Location.find_by_id(user.location_id) %>
+          <td><%= Location.find_by_id(user.location_id).name %></td>
+                          <%else%>..........................
+                            <td> </td>
+                          <%end %>
+        <td><%= user.email %></td>    ....  ..
+      </tr>
+      <% end %>
+    ......
+    </table>
