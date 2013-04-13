@@ -47,26 +47,23 @@
 	    <div class="navbar navbar-static">
 	    	<div class="navbar-inner">
 	    	
-	    	<span class="filterTagAlumni">Seria</span>
+	    	<span class="filterTagAlumni">Grupa</span>
 	    	<select class="selectAlumni span1">
-						<option>I</option>
-						<option>II</option>
+										
 			</select>
 	    	
 			<span class="filterTagAlumni">Promotia</span>
-	    	<select class="selectAlumni span2">
-						<option>2009</option>
-						<option>2010</option>
-						<option>2011</option>
-						<option>2012</option>
+	    	        <select class="selectAlumni span2">
+						<%  User.select("DISTINCT promotion").each do |g| %>
+						  <option> <%= g.promotion %></option>
+                                                <% end %>
 			</select>
 	    	
-			<span class="filterTagAlumni">Job</span>
+			<span class="filterTagAlumni">Specializare</span>
 	    	        <select class="selectAlumni span3">
-						<option>Programator</option>
-						<option>Inginer</option>
-						<option>Profesor</option>
-						<option>Sofer</option>
+				                <%  User.select("DISTINCT specialization").each do |g| %>
+						  <option> <%= g.specialization %></option>
+                                                <% end %>		
 			</select>
 	    	
 	        <button type="submit" class="btn">Actualizare</button>

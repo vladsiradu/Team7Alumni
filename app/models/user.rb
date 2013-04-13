@@ -13,7 +13,19 @@ class User < ActiveRecord::Base
   has_many :educations, :foreign_key => "user_id" 
   has_many :experiences, :foreign_key => "user_id"
   belongs_to :location
+  
+  # Validari - trebuie completat
+  validates :email, :presence => { :message => " Trebuie completat ! " }
+  validates :group, :presence => { :message => " Trebuie completat ! " }
+  validates :promotion, :presence => { :message => " Trebuie completat ! " }
+  validates :specialization, :presence =>  { :message => " Trebuie completat ! " }
 
+  # Validari speciale
+  validates_numericality_of :group, :only_integer => true, :greater_than_or_equal_to => 300
+  validates_numericality_of :promotion, :only_integer => true, :greater_than_or_equal_to => 1900
+
+
+  
   def self.create_with_omniauth(auth)
     create! do |user|
       user.uid = auth["uid"]
