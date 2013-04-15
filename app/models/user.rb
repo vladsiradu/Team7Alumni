@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,:imageurl,:ProfileUrl
-  attr_accessible :birthdate, :location_id, :email, :first_name, :address, :group, :last_name, 
+  attr_accessible :birthdate, :location_id, :email, :first_name, :address, :agroup, :last_name, 
                   :promotion, :temporary_profile, :encrypted_password, :specialization
 
   has_many :educations, :foreign_key => "user_id" 
@@ -16,12 +16,12 @@ class User < ActiveRecord::Base
   
   # Validari - trebuie completat
   validates :email, :presence => { :message => " Trebuie completat ! " }
-  validates :group, :presence => { :message => " Trebuie completat ! " }
+  validates :agroup, :presence => { :message => " Trebuie completat ! " }
   validates :promotion, :presence => { :message => " Trebuie completat ! " }
   validates :specialization, :presence =>  { :message => " Trebuie completat ! " }
 
   # Validari speciale
-  validates_numericality_of :group, :only_integer => true, :greater_than_or_equal_to => 300
+  validates_numericality_of :agroup, :only_integer => true, :greater_than_or_equal_to => 300
   validates_numericality_of :promotion, :only_integer => true, :greater_than_or_equal_to => 1900
 
 
