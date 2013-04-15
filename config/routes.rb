@@ -20,6 +20,7 @@ Alumni::Application.routes.draw do
   match '/fullupdate', to: 'users#update_DB'
   match '/home', to: 'pages#index'
   match 'edit_user', to: 'users#edit'
+  post '/loadusers', to: 'pages#loadusers'
   #match '/login', to: 'pages#login'
 
 

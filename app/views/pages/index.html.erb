@@ -21,57 +21,84 @@
         <%= gmaps4rails(@json) %><br>
          
         <% content_for :scripts do %>
-              <script type="text/javascript" charset="utf-8">
+          <script type="text/javascript" charset="utf-8">
+function afiseaza(users){
+ $("#list_users").empty();
+                          head = "<tr><th>Poza</th><th>Prenume</th><th>Nume</th><th>Email</th><th>Promotia</th></tr>";
+                          $("#list_users").append(head); 
+                          for (var i=0;i<users.length;i++){
+                            if(users[i]["imageurl"]==null)
+                              new_row = "<tr><td><a href='/users/"+users[i]["id"]+"'><img src='/assets/no_profile.jpeg', width='50', height='50' ></a></td><td>"+users[i]["first_name"]+"</td><td>"+users[i]["last_name"]+"</td>><td>"+users[i]["email"]+"</td><td>"+users[i]["promotion"]+"</td></tr>";
+                            else
+                              new_row = "<tr><td><a href='/users/"+users[i]["id"]+"'><img src='"+users[i]["imageurl"]+"', width='50', height='50' ></a></td><td>"+users[i]["first_name"]+"</td><td>"+users[i]["last_name"]+"</td>><td>"+users[i]["email"]+"</td><td>"+users[i]["promotion"]+"</td></tr>";
+
+                            $("#list_users").append(new_row); 
+                          }
+}
                 Gmaps.map.callback = function() {
                     for (var i = 0; i <  Gmaps.map.markers.length; ++i) {
                         var marker = Gmaps.map.markers[i].serviceObject
                         marker.marker_id = Gmaps.map.markers[i].id;
                         google.maps.event.addListener(marker, 'click', function() {
-                          users = this.marker_id
+                          users = this.marker_id;
+                          afiseaza(users)/*
                           $("#list_users").empty();
                           head = "<tr><th>Poza</th><th>Prenume</th><th>Nume</th><th>Email</th><th>Promotia</th></tr>";
                           $("#list_users").append(head); 
                           for (var i=0;i<users.length;i++){
                             if(users[i]["imageurl"]==null)
-                              new_row = "<tr><td><a href='/users/"+users[i]["id"]+"'><img src='/assets/no_profile.jpeg', width='50', height='50' ></a></td><td>"+users[i]["first_name"]+"</td><td>"+users[i]["last_name"]+"</td>><td>"+users[i]["email"]+"</td></tr>";
+                              new_row = "<tr><td><a href='/users/"+users[i]["id"]+"'><img src='/assets/no_profile.jpeg', width='50', height='50' ></a></td><td>"+users[i]["first_name"]+"</td><td>"+users[i]["last_name"]+"</td>><td>"+users[i]["email"]+"</td><td>"+users[i]["promotion"]+"</td></tr>";
                             else
                               new_row = "<tr><td><a href='/users/"+users[i]["id"]+"'><img src='"+users[i]["imageurl"]+"', width='50', height='50' ></a></td><td>"+users[i]["first_name"]+"</td><td>"+users[i]["last_name"]+"</td>><td>"+users[i]["email"]+"</td><td>"+users[i]["promotion"]+"</td></tr>";
 
                             $("#list_users").append(new_row); 
-                          }    });
-                    }                    
+                          }*/    });
+                    }
                 }
+
+                $("select").change(function () {
+                  $.ajax({
+                    url: "/loadusers",
+                    type: "POST",
+                    data: {
+                      grupa:$('#grupa :selected').text(),
+                      promotia:$('#promotia :selected').text(),
+                      specializarea:$('#specializarea :selected').text()},
+                    success: function(resp){afiseaza(resp); }
+                  });
+                });
             </script>
           <% end %>
 <form class="form-search cerereAdmitere">
-	    <div class="navbar navbar-static">
-	    	<div class="navbar-inner">
-	    	
-	    	<span class="filterTagAlumni">Grupa</span>
-	    	<select class="selectAlumni span1">
-										
-			</select>
+  <div class="navbar navbar-static">
+	  <div class="navbar-inner">
+	   	<span class="filterTagAlumni">Grupa</span>
+      <select id="grupa" class="selectAlumni span1">
+      <option>Toate grupele</option>
+			<%  User.select("DISTINCT agroup").each do |g| %>
+			  <option> <%= g.agroup %></option>
+      <% end %>
+		  </select>
 	    	
 			<span class="filterTagAlumni">Promotia</span>
-	    	        <select class="selectAlumni span2">
-						<%  User.select("DISTINCT promotion").each do |g| %>
-						  <option> <%= g.promotion %></option>
-                                                <% end %>
+      <select id="promotia" class="selectAlumni span2">
+      <option>Toate promotile</option>
+			<%  User.select("DISTINCT promotion").each do |g| %>
+			  <option> <%= g.promotion %></option>
+      <% end %>
 			</select>
 	    	
 			<span class="filterTagAlumni">Specializare</span>
-	    	        <select class="selectAlumni span3">
-				                <%  User.select("DISTINCT specialization").each do |g| %>
-						  <option> <%= g.specialization %></option>
-                                                <% end %>		
+	      <select id="specializarea" class="selectAlumni span3">
+        <option>Toate specializarile</option>	
+        <%  User.select("DISTINCT specialization").each do |g| %>
+			    <option> <%= g.specialization %></option>
+        <% end %>		
 			</select>
 	    	
-	        <button type="submit" class="btn">Actualizare</button>
-	        
-	    	
-            </div>
-         </div>
-	     </form><br>
+        </div>
+      </div>
+    </form><br>
 
        <h4></h4>
        <table id ="list_users"class="table table-striped alumni">

@@ -34,6 +34,14 @@ group :development do
   gem "binding_of_caller"
 end
 
+group :development, :test do
+    gem 'sqlite3'
+end
+
+group :production do
+    gem 'pg'
+end
+
 gem 'jquery-rails'
 gem "rails_admin"
 
