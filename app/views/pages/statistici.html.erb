@@ -1,0 +1,46 @@
+<center><a class="zocial linkedin" href="/auth/linkedin">Update informatii folosind LinkedIn</a></center><br><br> 
+
+   <div class="container-narrow">
+    	
+	<div class="masthead">
+        <div id="navbar-example" class="navbar navbar-static">
+            <div class="navbar-inner">
+            <a class="brand" href="/home">Alumni</a>
+              <div class="container" style="width: auto;">
+                <ul class="nav" role="navigation">
+                  <li><a href="/home"><b>Harta colegi</b></a></li>
+                  <li class="active"><a href="/statistici"> <b>Joburile colegilor tai</b> </a></li>                  
+              </div>
+            </div>
+          </div>
+    </div>
+<div class="well" id="chart_div" style="width:780px; height:500px;">
+<div class="container-narrow">
+
+	</div>
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Slujba', 'Numar alumni'],
+          ['Programator', 54],
+          ['Manager',      5],
+          ['Grafician',  100],
+          ['Gunoier', 2],
+          ['Alte domenii',    7]
+        ]);
+
+        var options = {
+          title: '!'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+
+
+</div>

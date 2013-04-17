@@ -19,6 +19,7 @@ Alumni::Application.routes.draw do
   match '/auth/linkedin/callback', to: 'users#create_from_linkedin'
   match '/fullupdate', to: 'users#update_DB'
   match '/home', to: 'pages#index'
+  match '/statistici', to: 'pages#statistici'
   match 'edit_user', to: 'users#edit'
   post '/loadusers', to: 'pages#loadusers'
   #match '/login', to: 'pages#login'

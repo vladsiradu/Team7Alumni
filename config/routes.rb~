@@ -1,4 +1,8 @@
 Alumni::Application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
+  resources :locations
+
   get "pages/home"
 
   # TODO: Sign out doesn't work
@@ -13,8 +17,11 @@ Alumni::Application.routes.draw do
   resources :educations
   
   match '/auth/linkedin/callback', to: 'users#create_from_linkedin'
-  match '/update', to: 'users#update_DB'   
+  match '/fullupdate', to: 'users#update_DB'
   match '/home', to: 'pages#index'
+  match '/statistici', to: 'pages#statistici"
+  match 'edit_user', to: 'users#edit'
+  post '/loadusers', to: 'pages#loadusers'
   #match '/login', to: 'pages#login'
 
 

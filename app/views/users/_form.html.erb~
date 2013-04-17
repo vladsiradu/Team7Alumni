@@ -44,10 +44,6 @@
     <td><%= f.email_field :email %></td>
   </tr>
 
-  <tr>
-    <th><%= f.label :Parola %></th>
-    <td><%= f.password_field :password %></td>
-  </tr>
 
   <tr>
     <th><%= f.label :Confirma_parola %></th>
@@ -56,7 +52,7 @@
 
   <tr>
     <th><%= f.label :Grupa %></th>
-    <td><%= f.text_field :group %></td>
+    <td><%= f.text_field :agroup %></td>
   </tr>
 
   <tr>

@@ -8,7 +8,8 @@
             <a class="brand" href="">Alumni</a>
               <div class="container" style="width: auto;">
                 <ul class="nav" role="navigation">
-                  <li class="active"><a href="/home">Harta colegi</a></li>                  
+                  <li class="active"><a href="/home">Harta colegi</a></li>
+                  <li><a href="/statistici"> <b>Joburile colegilor tai</b> </a></li>                  
               </div>
             </div>
           </div>
@@ -69,11 +70,11 @@ function afiseaza(users){
                 });
             </script>
           <% end %>
-<form class="form-search cerereAdmitere">
+<form class="form-inline">
   <div class="navbar navbar-static">
-	  <div class="navbar-inner">
+	  
 	   	<span class="filterTagAlumni">Grupa</span>
-      <select id="grupa" class="selectAlumni span1">
+      <select id="grupa" class="selectAlumni span2">
       <option>Toate grupele</option>
 			<%  User.select("DISTINCT agroup").each do |g| %>
 			  <option> <%= g.agroup %></option>
@@ -96,7 +97,6 @@ function afiseaza(users){
         <% end %>		
 			</select>
 	    	
-        </div>
       </div>
     </form><br>
 
