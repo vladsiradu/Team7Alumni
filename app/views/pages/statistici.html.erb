@@ -21,13 +21,15 @@
 
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
+      programator = <%= @job_hash[:programmer] %>
+
       google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Slujba', 'Numar alumni'],
-          ['Programator', 54],
-          ['Manager',      5],
+          ['Programator', programator],
+          ['Manager', <%= @job_hash[:management] %>],
           ['Grafician',  100],
           ['Gunoier', 2],
           ['Alte domenii',    7]

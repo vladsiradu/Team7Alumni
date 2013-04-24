@@ -40,4 +40,21 @@ class PagesController < ApplicationController
       format.json { render :json => @user }
     end
   end
+
+  def statistici
+    @job_hash = Hash.new()
+
+    programmer_keywords = ["programmer", "developer"]
+    @job_hash[:programmer] = 0
+    programmer_keywords.each do |programmer_keyword|
+      how_many = Experience.where("job_title ilike ?", "%#{programmer_keyword}%").count
+      @job_hash[:programmer] += how_many
+    end
+
+    @job_hash[:management] = 0
+    manager_keywords = ["manager", "executive"]
+    manager_keywords.each do |manager_keyword|
+      @job_hash[:management] += Experience.where("job_title ilike ?", "%#{manager_keyword}%").count
+    end
+  end
 end
