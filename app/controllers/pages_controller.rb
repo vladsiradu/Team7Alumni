@@ -1,5 +1,8 @@
 class PagesController < ApplicationController
   def index
+    if !user_signed_in?
+   redirect_to root_path
+	end
     @users = User.all
     markers_arr = []
     @json = Location.all.to_gmaps4rails do |location, marker|
@@ -42,6 +45,9 @@ class PagesController < ApplicationController
   end
 
   def statistici
+    if !user_signed_in?
+   redirect_to root_path
+   end
     @job_hash = Hash.new()
 
     programmer_keywords = ["programmer", "developer"]
