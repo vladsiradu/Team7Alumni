@@ -56,7 +56,7 @@ function afiseaza(users){
                     }
                 }
 
-                $("select").change(function () {
+function load_users () {
                   $.ajax({
                     url: "/loadusers",
                     type: "POST",
@@ -66,7 +66,9 @@ function afiseaza(users){
                       specializarea:$('#specializarea :selected').text()},
                     success: function(resp){afiseaza(resp); }
                   });
-                });
+                }
+$(document).ready(load_users());
+                $("select").change(load_users());
             </script>
           <% end %>
 <form class="form-inline">
