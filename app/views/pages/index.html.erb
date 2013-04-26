@@ -1,5 +1,5 @@
 
-    <center><a class="zocial linkedin" href="/auth/linkedin">Update informatii folosind LinkedIn</a></center><br><br>
+    <center><a class="zocial linkedin" href="/auth/linkedin">Update informatii folosind LinkedIn</a></center>
     <div class="container-narrow">
     	
 	<div class="masthead">
@@ -17,8 +17,7 @@
       
     <div class="well">
 
-    	<h4 class="muted">vezi pe harta unde se afla colegii tai.</h4>
-        <%= stylesheet_link_tag 'gmaps4rails' %>
+    	<%= stylesheet_link_tag 'gmaps4rails' %>
         <%= gmaps4rails(@json) %><br>
          
         <% content_for :scripts do %>
