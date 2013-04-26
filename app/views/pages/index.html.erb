@@ -1,5 +1,5 @@
 
-    <center><a class="zocial linkedin" href="/auth/linkedin">Update informatii folosind LinkedIn</a></center>
+<!--    <center><a class="zocial linkedin" href="/auth/linkedin">Update informatii folosind LinkedIn</a></center>-->
     <div class="container-narrow">
     	
 	<div class="masthead">
@@ -74,17 +74,26 @@ function afiseaza(users){
 	  
 	   	<span class="filterTagAlumni">Grupa</span>
       <select id="grupa" class="selectAlumni span2">
-      <option>Toate grupele</option>
-			<%  User.select("DISTINCT agroup").each do |g| %>
-			  <option> <%= g.agroup %></option>
-      <% end %>
+       <%  User.select("DISTINCT agroup").each do |g| %>
+        <% if(g.agroup == current_user.agroup) %>
+         <option selected="selected"> <%= g.agroup %></option>
+        <%else%>
+         <option> <%= g.agroup %></option>
+       <% end%>
+       <% end %>
+         <option>Toate grupele</option>
+
 		  </select>
 	    	
 			<span class="filterTagAlumni">Promotia</span>
       <select id="promotia" class="selectAlumni span2">
       <option>Toate promotile</option>
-			<%  User.select("DISTINCT promotion").each do |g| %>
-			  <option> <%= g.promotion %></option>
+      <%  User.select("DISTINCT promotion").each do |g| %>
+        <% if(g.promotion==current_user.promotion)%>
+          <option selected="selected"> <%= g.promotion %></option>
+        <%else%>
+          <option> <%= g.promotion %></option>
+        <%end%>
       <% end %>
 			</select>
 	    	
@@ -92,7 +101,11 @@ function afiseaza(users){
 	      <select id="specializarea" class="selectAlumni span3">
         <option>Toate specializarile</option>	
         <%  User.select("DISTINCT specialization").each do |g| %>
-			    <option> <%= g.specialization %></option>
+          <%if(g.specialization==current_user.specialization) %>
+            <option selected="selected"> <%= g.specialization %></option>
+          <% else%>
+            <option> <%= g.specialization %></option>
+          <%end%>
         <% end %>		
 			</select>
 	    	
