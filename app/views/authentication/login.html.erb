@@ -1,0 +1,55 @@
+<head>
+  <title>Alumni Login</title>
+  <style type="text/css">
+      .form-signin {
+        max-width: 300px;
+        padding: 19px 29px 29px;
+        margin: 100px auto 20px;
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+      .form-signin .form-signin-heading,
+      .form-signin .checkbox {
+        margin-bottom: 10px;
+      }
+      .form-signin input[type="text"],
+      .form-signin input[type="password"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
+      .linkedin-container{
+	      
+	      margin:20px auto;
+      }
+  </style>
+      
+</head>
+<body>
+
+  <%= form_for(resource,:as => resource_name, :url => session_path(resource_name), :html => { :class => "form-signin"} ) do |f| %>
+  <a class="zocial linkedin" href="/auth/linkedin">Logare folosind LinkedIn</a><br><br>
+  <div><%= f.label :Email %>
+  <%= f.email_field :email %></div>
+
+  <div><%= f.label :Parola %>
+  <%= f.password_field :password %></div>
+
+  <% if devise_mapping.rememberable? -%>
+    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+  <% end -%>
+
+  <div><%= f.submit "Sign in" %></div>
+<a href="users/sign_up" class="pull-right">Creare cont</a> 
+<% end %>
+
+</body>
+
+
