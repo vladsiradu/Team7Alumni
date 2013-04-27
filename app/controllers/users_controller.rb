@@ -157,11 +157,9 @@ redirect_to root_path, :alert=> "Login with LinkedIn failed!!"
 
   def update_experiences(client,user)
     positions = client.profile(:fields => [:positions]).positions.all
-#sa adaug si industry?? 
-    Rails.logger.debug user.inspect 
+    user.experiences.destroy_all
       if(!positions.nil?)
         positions.each do |p|
-          if(!Experience.exists?(:id => p.id))
             if (p.start_date)
               if p.is_current == "true"
               Experience.create(
@@ -191,16 +189,14 @@ redirect_to root_path, :alert=> "Login with LinkedIn failed!!"
  
             end
           end
-        end
       end
   end
 
   def update_educations(client,user)
-      #client = get_client
       educations = client.profile(:fields => [:educations]).educations.all
+      user.educations.destroy_all
       if(!educations.nil?)
         educations.each do |e|
-          if(!Education.exists?(:id => e.id))
             if(e.start_date && e.end_date)
               new_educations = Education.create(
 	              id: e.id,
@@ -216,7 +212,6 @@ redirect_to root_path, :alert=> "Login with LinkedIn failed!!"
                  domain: e.degree,
                  user_id: user.id)
              end 
-          end
         end
       end
   end
